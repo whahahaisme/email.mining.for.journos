@@ -1,8 +1,8 @@
-Package: email-mining
+Package: email.mining
 Title: 
 Description: 
 Version: 0.1
-Authors@R: # getOptions('devtools.desc.author')
+Author: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Depends: R (>= 3.0.2)
-License: # getOptions('devtools.desc.license')
+License: AGPL-3
 LazyData: true
