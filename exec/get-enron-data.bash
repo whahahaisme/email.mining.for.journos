@@ -9,10 +9,8 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-pushd ~
-mkdir -p enron
-pushd enron
+mkdir -p /home/Email/enron
+pushd /home/Email/enron
 wget -nc \
   http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz
-popd
 popd

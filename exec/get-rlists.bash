@@ -11,9 +11,8 @@
 
 export WHERE="https://stat.ethz.ch/pipermail/r-devel"
 export FILES=`curl -s ${WHERE}/|grep 'txt.gz'|sed 's/^.*href="//'|sed 's/".*$//'`
-pushd ~
-mkdir -p r-devel
-pushd r-devel
+mkdir -p /home/Email/r-devel
+pushd /home/Email/r-devel
 for i in ${FILES}
 do
   wget -nc ${WHERE}/${i}
@@ -22,12 +21,10 @@ popd
 
 export WHERE="https://stat.ethz.ch/pipermail/r-help"
 export FILES=`curl -s ${WHERE}/|grep 'txt.gz'|sed 's/^.*href="//'|sed 's/".*$//'`
-mkdir -p r-help
-pushd r-help
+mkdir -p /home/Email/r-help
+pushd /home/Email/r-help
 for i in ${FILES}
 do
   wget -nc ${WHERE}/${i}
 done
-popd
-
 popd
