@@ -28,7 +28,7 @@ rdevel <- Corpus(
 )
 
 # pre-processing
-rdevel <- tm_map(rdevel, tm::asPlainTextDocument, mc.cores=1)
-rdevel <- tm_map(rdevel, tm::stripWhitespace, mc.cores=1)
-rdevel <- tm_map(rdevel, tmTolower, mc.cores=1)
+rdevel <- tm_map(rdevel, as.PlainTextDocument, mc.cores=4)
+rdevel <- tm_map(rdevel, stripWhitespace, mc.cores=4)
+rdevel <- tm_map(rdevel, tolower, mc.cores=4)
 summary(rdevel)
