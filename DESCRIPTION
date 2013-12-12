@@ -1,8 +1,10 @@
 Package: email.mining
-Title: 
-Description: 
+Title: Email mining demos
+Description: Email mining demos
 Version: 0.1
 Author: M. Edward (Ed) Borasky <znmeb@znmeb.net>
-Depends: R (>= 3.0.2)
+Maintainer: M. Edward (Ed) Borasky <znmeb@znmeb.net>
+Depends:
+    R (>= 3.0.2)
 License: AGPL-3
 LazyData: true
