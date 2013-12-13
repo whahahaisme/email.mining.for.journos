@@ -12,6 +12,7 @@ require(tm)
 require(tm.plugin.mail)
 require(filehash)
 
+print(date())
 enron.corpus <- PCorpus(
   DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
   readerControl = list(
@@ -23,3 +24,4 @@ enron.corpus <- PCorpus(
     dbName = 'enron.db'
   )
 )
+print(date())
