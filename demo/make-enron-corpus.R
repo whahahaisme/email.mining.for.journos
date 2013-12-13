@@ -10,7 +10,6 @@
 # libraries needed
 require(tm)
 require(tm.plugin.mail)
-require(filehash)
 
 print(date())
 Rprof(
@@ -52,3 +51,9 @@ summaryRprof(
   memory = "both",
   lines = "both"
 )
+
+# pre-processing
+enron.corpus <- tm_map(enron.corpus, as.PlainTextDocument, mc.cores=4)
+enron.corpus <- tm_map(enron.corpus, stripWhitespace, mc.cores=4)
+enron.corpus <- tm_map(enron.corpus, tolower, mc.cores=4)
+summary(enron.corpus)
