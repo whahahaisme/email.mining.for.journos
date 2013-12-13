@@ -16,18 +16,49 @@ setwd('/home/Email')
 system('gzip -dc r-devel/*2006*gz > 2006.txt')
 convert_mbox_eml('2006.txt', '2006/')
 
-# create the (volatile) corpus
-rdevel <- Corpus(
-  DirSource("2006/"),
-  readerControl = list(
-    reader = readMail,
-    language = "en_US",
-    load = TRUE
+print(date())
+Rprof(
+  memory.profiling = TRUE,
+  gc.profiling = TRUE, 
+  line.profiling = TRUE,
+  numfiles = 10000L,
+  bufsize = 10000L
+)
+
+# change to TRUE for Permanent corpus
+Permanent <- FALSE
+
+if (Permanent) {
+  rdevel.corpus <- PCorpus(
+    DirSource("2006/"),
+    readerControl = list(
+      reader = readMail,
+      language = "en_US",
+      load = TRUE
+    ),
+    dbControl = list(
+      dbName = 'rdevel.db'
+    )
   )
+} else {
+  rdevel.corpus <- VCorpus(
+    DirSource("2006/"),
+    readerControl = list(
+      reader = readMail,
+      language = "en_US",
+      load = TRUE
+    )
+  )
+}
+Rprof(NULL)
+print(date())
+summaryRprof(
+  memory = "both",
+  lines = "both"
 )
 
 # pre-processing
-rdevel <- tm_map(rdevel, as.PlainTextDocument, mc.cores=4)
-rdevel <- tm_map(rdevel, stripWhitespace, mc.cores=4)
-rdevel <- tm_map(rdevel, tolower, mc.cores=4)
-summary(rdevel)
+rdevel.corpus <- tm_map(rdevel.corpus, as.PlainTextDocument, mc.cores=4)
+rdevel.corpus <- tm_map(rdevel.corpus, stripWhitespace, mc.cores=4)
+rdevel.corpus <- tm_map(rdevel.corpus, tolower, mc.cores=4)
+summary(rdevel.corpus)
