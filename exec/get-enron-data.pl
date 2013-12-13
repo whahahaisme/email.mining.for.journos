@@ -52,7 +52,8 @@ while (my $messageline = shift @messagelines) {
     system "ln -sf ${datadir}/${filename} \'${destination}/${messageid}\'";
   }
   $messagecount += 1;
-  print "${messagecount} messages processed\n" if $messagecount % 5000 == 0;
+  print "${messagecount} messages processed\n" if $messagecount % 500 == 0;
 }
 
+print "${messagecount} messages processed\n";
 exit;
