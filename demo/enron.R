@@ -13,6 +13,13 @@ require(tm.plugin.mail)
 require(filehash)
 
 print(date())
+Rprof(
+  memory.profiling = TRUE,
+  gc.profiling = TRUE, 
+  line.profiling = TRUE,
+  numfiles = 10000L,
+  bufsize = 10000L
+)
 enron.corpus <- PCorpus(
   DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
   readerControl = list(
@@ -24,4 +31,5 @@ enron.corpus <- PCorpus(
     dbName = 'enron.db'
   )
 )
+Rprof(NULL)
 print(date())
