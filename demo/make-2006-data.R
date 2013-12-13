@@ -10,7 +10,6 @@
 # libraries needed
 require(tm)
 require(tm.plugin.mail)
-require(SnowballC)
 
 # unpack data
 setwd('/home/Email')
