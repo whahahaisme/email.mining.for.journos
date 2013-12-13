@@ -20,17 +20,32 @@ Rprof(
   numfiles = 10000L,
   bufsize = 10000L
 )
-enron.corpus <- PCorpus(
-  DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
-  readerControl = list(
-    reader = readMail,
-    language = "en_US",
-    load = TRUE
-  ),
-  dbControl = list(
-    dbName = 'enron.db'
+
+# change to TRUE for Permanent corpus
+Permanent <- FALSE
+
+if (Permanent) {
+  enron.corpus <- PCorpus(
+    DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
+    readerControl = list(
+      reader = readMail,
+      language = "en_US",
+      load = TRUE
+    ),
+    dbControl = list(
+      dbName = 'enron.db'
+    )
   )
-)
+} else {
+  enron.corpus <- VCorpus(
+    DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
+    readerControl = list(
+      reader = readMail,
+      language = "en_US",
+      load = TRUE
+    )
+  )
+}
 Rprof(NULL)
 print(date())
 summaryRprof(
