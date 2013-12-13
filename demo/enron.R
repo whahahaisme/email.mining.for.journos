@@ -33,3 +33,7 @@ enron.corpus <- PCorpus(
 )
 Rprof(NULL)
 print(date())
+summaryRprof(
+  memory = "both",
+  lines = "both"
+)
