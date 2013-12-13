@@ -1,4 +1,4 @@
-# Copyright (C) 2012 by M. Edward (Ed) Borasky
+# Copyright (C) 2013 by M. Edward (Ed) Borasky
 #
 # This program is licensed to you under the terms of version 3 of the
 # GNU Affero General Public License. This program is distributed WITHOUT
