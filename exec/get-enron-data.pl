@@ -37,6 +37,7 @@ system "rm -fr ${destination}; mkdir -p ${destination}";
 
 # to save space, use symbolic links!
 while (my $messageline = shift @messagelines) {
+  next if $messageline !~ /\/inbox\//; # just use the 'Inbox' messages!
   chomp $messageline; 
 
   # make a reasonable file name from the message ID
