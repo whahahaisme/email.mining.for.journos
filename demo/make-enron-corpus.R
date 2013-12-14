@@ -10,7 +10,6 @@
 # libraries needed
 require(email.mining)
 
-old.cores <- options(mc.cores = 1)
 system('rm -f enron.db')
 
 print(date())
