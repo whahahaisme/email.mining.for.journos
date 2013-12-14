@@ -17,6 +17,14 @@
 #' @importFrom tm VCorpus
 #' @importFrom tm DirSource
 #' @importFrom tm.plugin.mail readMail
+#' @importFrom tm tm_map
+#' @importFrom tm as.PlainTextDocument
+#' @importFrom tm.plugin.webmining removeNonASCII
+#' @importFrom tm removePunctuation
+#' @importFrom tm stripWhitespace
+#' @importFrom tm stemDocument
+#' @importFrom tm removeWords
+#' @importFrom tm stopwords
 #' @param DirSource absolute path to a directory containing email messages, one per file
 #' @param Permanent TRUE for a Permanent corpus, FALSE (default) for Volatile
 #' @param dbName filename for the database used by a Permanent corpus
@@ -46,4 +54,13 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
       )
     )
   }
+  
+  # data cleaning
+  email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
+  email.corpus <- tm_map(email.corpus, removeNonASCII)
+  email.corpus <- tm_map(email.corpus, removePunctuation)
+  email.corpus <- tm_map(email.corpus, stripWhitespace)
+  email.corpus <- tm_map(email.corpus, tolower)
+  email.corpus <- tm_map(email.corpus, stemDocument, language='english')
+  email.corpus <- tm_map(email.corpus, removeWords, stopwords('english'))
 }
