@@ -8,13 +8,10 @@
 #
 
 # libraries needed
-require(tm)
-require(tm.plugin.mail)
+require(email.mining)
 
-# unpack data
-setwd('/home/Email')
-system('gzip -dc r-devel/*2006*gz > 2006.txt')
-convert_mbox_eml('2006.txt', '2006/')
+old.cores <- options(mc.cores = 7)
+system('rm -f rdevel.db')
 
 print(date())
 Rprof(
@@ -24,41 +21,17 @@ Rprof(
   numfiles = 10000L,
   bufsize = 10000L
 )
-
-# change to TRUE for Permanent corpus
-Permanent <- FALSE
-
-if (Permanent) {
-  rdevel.corpus <- PCorpus(
-    DirSource("2006/"),
-    readerControl = list(
-      reader = readMail,
-      language = "en_US",
-      load = TRUE
-    ),
-    dbControl = list(
-      dbName = 'rdevel.db'
-    )
-  )
-} else {
-  rdevel.corpus <- VCorpus(
-    DirSource("2006/"),
-    readerControl = list(
-      reader = readMail,
-      language = "en_US",
-      load = TRUE
-    )
-  )
-}
+rdevel.corpus <- make.email.corpus(
+  '/home/Email/2006',
+  Permanent=TRUE,
+  dbName='rdevel.db'
+)
 Rprof(NULL)
 print(date())
-summaryRprof(
-  memory = "both",
-  lines = "both"
+print(
+  summaryRprof(
+    memory = "both",
+    lines = "both"
+  )
 )
-
-# pre-processing
-rdevel.corpus <- tm_map(rdevel.corpus, as.PlainTextDocument, mc.cores=4)
-rdevel.corpus <- tm_map(rdevel.corpus, stripWhitespace, mc.cores=4)
-rdevel.corpus <- tm_map(rdevel.corpus, tolower, mc.cores=4)
 summary(rdevel.corpus)

@@ -17,13 +17,13 @@
 #' @importFrom tm VCorpus
 #' @importFrom tm DirSource
 #' @importFrom tm as.PlainTextDocument
+#' @importFrom tm stripWhitespace
 #' @importFrom tm tm_map
 #' @importFrom tm.plugin.mail readMail
 #' @examples
 #' # email.corpus <- sf1.cheat.sheet()
 
-make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db',
-  cores=1) {
+make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
   if (Permanent) {
     email.corpus <- PCorpus(
       DirSource(DirSource),
@@ -48,7 +48,7 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db',
   }
 
   # pre-processing
-  email.corpus <- tm_map(email.corpus, as.PlainTextDocument, mc.cores=cores)
-  email.corpus <- tm_map(email.corpus, stripWhitespace, mc.cores=cores)
-  email.corpus <- tm_map(email.corpus, tolower, mc.cores=cores)
+  email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
+  email.corpus <- tm_map(email.corpus, stripWhitespace)
+  email.corpus <- tm_map(email.corpus, tolower)
 }

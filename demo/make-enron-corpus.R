@@ -8,8 +8,10 @@
 #
 
 # libraries needed
-require(tm)
-require(tm.plugin.mail)
+require(email.mining)
+
+old.cores <- options(mc.cores = 7)
+system('rm -f enron.db')
 
 print(date())
 Rprof(
@@ -19,41 +21,17 @@ Rprof(
   numfiles = 10000L,
   bufsize = 10000L
 )
-
-# change to TRUE for Permanent corpus
-Permanent <- FALSE
-
-if (Permanent) {
-  enron.corpus <- PCorpus(
-    DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
-    readerControl = list(
-      reader = readMail,
-      language = "en_US",
-      load = TRUE
-    ),
-    dbControl = list(
-      dbName = 'enron.db'
-    )
-  )
-} else {
-  enron.corpus <- VCorpus(
-    DirSource('/home/Email/enron/enron_mail_20110402/flattened'),
-    readerControl = list(
-      reader = readMail,
-      language = "en_US",
-      load = TRUE
-    )
-  )
-}
+enron.corpus <- make.email.corpus(
+  '/home/Email/enron/enron_mail_20110402/flattened',
+  Permanent=TRUE,
+  dbName='enron.db'
+)
 Rprof(NULL)
 print(date())
-summaryRprof(
-  memory = "both",
-  lines = "both"
+print(
+  summaryRprof(
+    memory = "both",
+    lines = "both"
+  )
 )
-
-# pre-processing
-enron.corpus <- tm_map(enron.corpus, as.PlainTextDocument, mc.cores=4)
-enron.corpus <- tm_map(enron.corpus, stripWhitespace, mc.cores=4)
-enron.corpus <- tm_map(enron.corpus, tolower, mc.cores=4)
 summary(enron.corpus)
