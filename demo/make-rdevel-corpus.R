@@ -34,3 +34,4 @@ print(
   )
 )
 print(summary(rdevel.corpus))
+save(rdevel.corpus, file='rdevel-corpus.Rdata', compress='xz')
