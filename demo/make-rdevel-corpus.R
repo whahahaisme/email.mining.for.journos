@@ -38,8 +38,9 @@ print(
 
 # data cleaning
 require(tm)
-old.mc.cores <- options(mc.cores = 1) # debugging
+old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
 rdevel.corpus <- tm_map(rdevel.corpus, as.PlainTextDocument)
+rdevel.corpus <- tm_map(rdevel.corpus, removePunctuation)
 rdevel.corpus <- tm_map(rdevel.corpus, stripWhitespace)
 rdevel.corpus <- tm_map(rdevel.corpus, tolower)
 rdevel.corpus <- tm_map(rdevel.corpus, stemDocument, language='english')
