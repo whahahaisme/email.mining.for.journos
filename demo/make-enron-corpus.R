@@ -14,6 +14,7 @@ system('rm -f enron.db')
 
 print(date())
 Rprof(
+  filename = '/home/Email/enron.Rprof',
   memory.profiling = TRUE,
   gc.profiling = TRUE, 
   line.profiling = TRUE,
@@ -29,6 +30,7 @@ Rprof(NULL)
 print(date())
 print(
   summaryRprof(
+    filename = '/home/Email/enron.Rprof',
     memory = "both",
     lines = "both"
   )
