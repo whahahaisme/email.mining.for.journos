@@ -6,5 +6,8 @@ Author: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Maintainer: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Depends:
     R (>= 3.0.2)
+Imports:
+    tm (>= 0.5-9.1),
+    tm.plugin.mail (>= 0.0-7)
 License: AGPL-3
 LazyData: true
