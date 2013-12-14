@@ -16,12 +16,6 @@
 #' @importFrom tm PCorpus
 #' @importFrom tm VCorpus
 #' @importFrom tm DirSource
-#' @importFrom tm as.PlainTextDocument
-#' @importFrom tm stripWhitespace
-#' @importFrom tm stemDocument
-#' @importFrom tm removeWords
-#' @importFrom tm stopwords
-#' @importFrom tm tm_map
 #' @importFrom tm.plugin.mail readMail
 #' @param DirSource absolute path to a directory containing email messages, one per file
 #' @param Permanent TRUE for a Permanent corpus, FALSE (default) for Volatile
@@ -52,9 +46,4 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
       )
     )
   }
-
-  # pre-processing
-  email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
-  email.corpus <- tm_map(email.corpus, stripWhitespace)
-  email.corpus <- tm_map(email.corpus, tolower)
 }
