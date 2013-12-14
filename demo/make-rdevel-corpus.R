@@ -39,7 +39,7 @@ print(sort(table(authors), decreasing = TRUE)[1:20])
 headings <- lapply(rdevel.corpus, Heading)
 headings <- sapply(headings, paste, collapse = " ")
 
-# The sorted contingency table shows the biggest topics’ names and the amount of postings
+# The sorted contingency table shows the biggest topics' names and the amount of postings
 print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
 bigTopics <- names(bigTopicsTable)
 
