@@ -34,4 +34,4 @@ print(
   )
 )
 print(summary(rdevel.corpus))
-save(rdevel.corpus, file='data/rdevel-corpus.rda', compress='xz')
+save(rdevel.corpus, file='/home/Email/rdevel-corpus.rda', compress='xz')
