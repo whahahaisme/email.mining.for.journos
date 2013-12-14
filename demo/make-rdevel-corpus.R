@@ -23,7 +23,7 @@ Rprof(
 )
 rdevel.corpus <- make.email.corpus(
   '/home/Email/2006',
-  Permanent=TRUE,
+  Permanent=FALSE,
   dbName='rdevel.db'
 )
 Rprof(NULL)
@@ -34,4 +34,4 @@ print(
     lines = "both"
   )
 )
-summary(rdevel.corpus)
+print(summary(rdevel.corpus))

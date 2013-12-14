@@ -23,7 +23,7 @@ Rprof(
 )
 enron.corpus <- make.email.corpus(
   '/home/Email/enron/enron_mail_20110402/flattened',
-  Permanent=TRUE,
+  Permanent=FALSE,
   dbName='enron.db'
 )
 Rprof(NULL)
@@ -34,4 +34,4 @@ print(
     lines = "both"
   )
 )
-summary(enron.corpus)
+print(summary(enron.corpus))
