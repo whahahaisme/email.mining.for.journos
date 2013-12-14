@@ -34,4 +34,4 @@ print(
   )
 )
 print(summary(enron.corpus))
-save(enron.corpus, file='enron-corpus.Rdata', compress='xz')
+save(enron.corpus, file='data/enron-corpus.rda', compress='xz')
