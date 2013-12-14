@@ -11,7 +11,7 @@
 #' 'make.email.corpus' makes an email corpus from a flattened directory of
 #' email message files.
 #'
-#' @keywords 'text mining' email corpus
+#' @keywords email corpus
 #' @export make.email.corpus
 #' @importFrom tm PCorpus
 #' @importFrom tm VCorpus
@@ -23,8 +23,11 @@
 #' @importFrom tm stopwords
 #' @importFrom tm tm_map
 #' @importFrom tm.plugin.mail readMail
+#' @param DirSource absolute path to a directory containing email messages, one per file
+#' @param Permanent TRUE for a Permanent corpus, FALSE (default) for Volatile
+#' @param dbName filename for the database used by a Permanent corpus
 #' @examples
-#' # email.corpus <- sf1.cheat.sheet()
+#' # rdevel.corpus <- make.email.corpus('/home/Email/2006', Permanent=FALSE, dbName='rdevel.db')
 
 make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
   if (Permanent) {
