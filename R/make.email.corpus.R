@@ -57,6 +57,4 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
   email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
   email.corpus <- tm_map(email.corpus, stripWhitespace)
   email.corpus <- tm_map(email.corpus, tolower)
-  email.corpus <- tm_map(email.corpus, removeWords, stopwords("en"))
-  email.corpus <- tm_map(email.corpus, stemDocument)
 }
