@@ -17,6 +17,8 @@ bib <- read.bibtex("knitcitations.bib")
 cite(bib["Russell2013"])
 cite(bib["Bouchet-Valat2013"])
 cite(bib["Bohn2011"])
+cite(bib["Williams2011"])
+cite(bib["Williams2009"])
 cite(bib["Feinerer2008"])
 ```
 ```{r echo=FALSE, results='asis'}
