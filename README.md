@@ -1,3 +1,10 @@
 ## email.mining.for.journos
 
 An R package for email text mining
+
+### Road Map
+1. Build initial presentation / vignette infrastructure
+1. Port the Bash and Perl code to R
+1. Incorporate 'snatm' demos
+1. ...
+1. Profit!
