@@ -10,7 +10,7 @@
 old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
 
 # libraries needed
-require(email.mining)
+require(email.mining.for.journos)
 require(tm)
 
 system('rm -f rdevel.db')

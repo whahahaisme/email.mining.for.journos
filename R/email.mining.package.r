@@ -1,5 +1,5 @@
-#' email.mining
+#' email.mining.for.journos
 #'
-#' @name email.mining
+#' @name email.mining.for.journos
 #' @docType package
 NULL
