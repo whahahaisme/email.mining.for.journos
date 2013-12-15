@@ -1,7 +1,7 @@
-Package: email.mining
+Package: email.mining.for.journos
 Title: Email mining demos
 Description: Email mining demos
-Version: 0.1
+Version: 0.0.1
 Author: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Maintainer: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Depends:
