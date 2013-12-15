@@ -1,5 +1,4 @@
 ## email.mining.for.journos
-
 An R package for email text mining
 
 ### Road Map
@@ -8,3 +7,16 @@ An R package for email text mining
 1. Incorporate 'snatm' demos
 1. ...
 1. Profit!
+
+### References
+```{r echo=FALSE, message=FALSE, results='hide'}
+
+# Invisible citations here to force a bibliography
+library(knitcitations)
+bib <- read.bibtex("knitcitations.bib")
+cite(bib["Feinerer2008"])
+cite(bib["Bohn2011"])
+```
+```{r echo=FALSE, results='asis'}
+bibliography()
+```
