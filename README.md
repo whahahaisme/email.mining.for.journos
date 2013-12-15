@@ -1,4 +1,3 @@
-email.mining.for.journos
-========================
+## email.mining.for.journos
 
-Tools for mining email archives, mostly in R
+An R package for email text mining
