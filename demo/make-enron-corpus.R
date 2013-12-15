@@ -43,12 +43,12 @@ headings <- sapply(headings, paste, collapse = " ")
 print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
 bigTopics <- names(bigTopicsTable)
 
-# First topic
-topicCol <- enron.corpus[headings == bigTopics[1]]
+# Third topic (first two are 'RE:' and 'FW:')
+topicCol <- enron.corpus[headings == bigTopics[3]]
 print(unique(sapply(topicCol, Author)))
 
-# Second topic
-topicCol <- enron.corpus[headings == bigTopics[2]]
+# Fourth topic
+topicCol <- enron.corpus[headings == bigTopics[4]]
 print(unique(sapply(topicCol, Author)))
 
 # find frequent terms
