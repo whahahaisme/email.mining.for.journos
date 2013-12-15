@@ -1,7 +1,9 @@
 Package: email.mining.for.journos
-Title: Email mining demos
-Description: Email mining demos
+Title: Email Mining for Journalists
+Description: Productization of tm.plugin.mail, snatm, etc. for journalists who
+    want to explore and analyze email corpora
 Version: 0.0.1
+Date: 2013-12-14
 Author: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Maintainer: M. Edward (Ed) Borasky <znmeb@znmeb.net>
 Depends:
