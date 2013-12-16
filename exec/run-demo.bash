@@ -11,7 +11,7 @@
 
 # start monitors
 iostat 1 > ${1}.iostat.log &
-vmstat 1 > ${1}.iostat.log &
+vmstat 1 > ${1}.vmstat.log &
 
 # run the demo with performance capture
 /usr/bin/time R --no-save < ../demo/make-${1}-corpus.R 2>&1 | tee ${1}.log
