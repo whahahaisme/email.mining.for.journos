@@ -49,9 +49,9 @@ while (my $messageline = shift @messagelines) {
     print "${messageline}\n";
   }
   else {
-    system "ln -sf ${datadir}/${filename} \'${destination}/${messageid}\'";
-    system "ln -sf ${datadir}/${filename} \'${inboxes}/${messageid}\'" if
-      ($messageline !~ /\/inbox\//);
+    system "cp ${datadir}/${filename} \'${destination}/${messageid}\'";
+    system "cp ${datadir}/${filename} \'${inboxes}/${messageid}\'" if
+      ($messageline =~ /\/inbox\//);
   }
   $messagecount += 1;
   print "${messagecount} messages processed\n" if $messagecount % 5000 == 0;
