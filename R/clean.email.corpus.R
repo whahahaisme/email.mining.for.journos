@@ -16,6 +16,7 @@
 #' @importFrom tm tm_map
 #' @importFrom tm as.PlainTextDocument
 #' @importFrom tm.plugin.webmining removeNonASCII
+#' @importFrom tm removeNumbers
 #' @importFrom tm removePunctuation
 #' @importFrom tm stripWhitespace
 #' @importFrom tm stemDocument
