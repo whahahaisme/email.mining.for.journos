@@ -1,0 +1,1094 @@
+
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-redhat-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> # Copyright (C) 2013 by M. Edward (Ed) Borasky
+> #
+> # This program is licensed to you under the terms of version 3 of the
+> # GNU Affero General Public License. This program is distributed WITHOUT
+> # ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+> # MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+> # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
+> #
+> 
+> # clean slate
+> ls()
+character(0)
+> rm(list=ls())
+> gc()
+         used (Mb) gc trigger (Mb) max used (Mb)
+Ncells 182198  9.8     407500 21.8   338731 18.1
+Vcells 277882  2.2     786432  6.0   786409  6.0
+> 
+> old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
+> gcinfo(TRUE)
+[1] FALSE
+> 
+> # libraries needed
+Garbage collection 30 = 26+2+2 (level 0) ... 
+9.8 Mbytes of cons cells used (45%)
+2.2 Mbytes of vectors used (35%)
+> require(email.mining.for.journos)
+Loading required package: email.mining.for.journos
+Garbage collection 31 = 27+2+2 (level 0) ... 
+10.3 Mbytes of cons cells used (47%)
+2.3 Mbytes of vectors used (37%)
+Garbage collection 32 = 28+2+2 (level 0) ... 
+12.8 Mbytes of cons cells used (59%)
+2.8 Mbytes of vectors used (46%)
+Garbage collection 33 = 29+2+2 (level 0) ... 
+13.2 Mbytes of cons cells used (60%)
+2.9 Mbytes of vectors used (48%)
+Garbage collection 34 = 30+2+2 (level 0) ... 
+13.3 Mbytes of cons cells used (61%)
+2.9 Mbytes of vectors used (48%)
+Garbage collection 35 = 31+2+2 (level 0) ... 
+13.3 Mbytes of cons cells used (61%)
+2.9 Mbytes of vectors used (48%)
+Garbage collection 36 = 32+2+2 (level 0) ... 
+13.4 Mbytes of cons cells used (61%)
+2.9 Mbytes of vectors used (48%)
+Garbage collection 37 = 33+2+2 (level 0) ... 
+13.5 Mbytes of cons cells used (62%)
+3.0 Mbytes of vectors used (48%)
+Garbage collection 38 = 34+2+2 (level 0) ... 
+15.5 Mbytes of cons cells used (71%)
+3.2 Mbytes of vectors used (52%)
+Garbage collection 39 = 35+2+2 (level 0) ... 
+16.9 Mbytes of cons cells used (78%)
+3.6 Mbytes of vectors used (59%)
+Garbage collection 40 = 36+2+2 (level 0) ... 
+18.1 Mbytes of cons cells used (83%)
+3.7 Mbytes of vectors used (61%)
+Garbage collection 41 = 36+3+2 (level 1) ... 
+17.5 Mbytes of cons cells used (80%)
+3.5 Mbytes of vectors used (57%)
+Garbage collection 42 = 36+3+3 (level 2) ... 
+17.4 Mbytes of cons cells used (70%)
+3.4 Mbytes of vectors used (49%)
+Garbage collection 43 = 37+3+3 (level 0) ... 
+17.4 Mbytes of cons cells used (70%)
+3.4 Mbytes of vectors used (49%)
+Garbage collection 44 = 38+3+3 (level 0) ... 
+17.5 Mbytes of cons cells used (70%)
+3.4 Mbytes of vectors used (49%)
+Garbage collection 45 = 39+3+3 (level 0) ... 
+17.5 Mbytes of cons cells used (70%)
+3.4 Mbytes of vectors used (49%)
+Garbage collection 46 = 40+3+3 (level 0) ... 
+17.6 Mbytes of cons cells used (70%)
+3.5 Mbytes of vectors used (49%)
+Garbage collection 47 = 40+4+3 (level 1) ... 
+18.3 Mbytes of cons cells used (73%)
+3.6 Mbytes of vectors used (51%)
+Garbage collection 48 = 41+4+3 (level 0) ... 
+20.7 Mbytes of cons cells used (83%)
+3.7 Mbytes of vectors used (53%)
+Garbage collection 49 = 41+5+3 (level 1) ... 
+21.0 Mbytes of cons cells used (84%)
+3.8 Mbytes of vectors used (54%)
+Garbage collection 50 = 41+5+4 (level 2) ... 
+21.9 Mbytes of cons cells used (77%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 51 = 42+5+4 (level 0) ... 
+22.2 Mbytes of cons cells used (78%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 52 = 43+5+4 (level 0) ... 
+22.2 Mbytes of cons cells used (78%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 53 = 44+5+4 (level 0) ... 
+22.3 Mbytes of cons cells used (78%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 54 = 45+5+4 (level 0) ... 
+22.3 Mbytes of cons cells used (79%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 55 = 46+5+4 (level 0) ... 
+22.4 Mbytes of cons cells used (79%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 56 = 47+5+4 (level 0) ... 
+22.4 Mbytes of cons cells used (79%)
+4.0 Mbytes of vectors used (50%)
+Garbage collection 57 = 48+5+4 (level 0) ... 
+22.5 Mbytes of cons cells used (79%)
+4.0 Mbytes of vectors used (50%)
+> require(tm)
+Loading required package: tm
+> 
+> print(date())
+Garbage collection 58 = 49+5+4 (level 0) ... 
+22.6 Mbytes of cons cells used (80%)
+4.4 Mbytes of vectors used (55%)
+[1] "Mon Dec 16 12:42:42 2013"
+> rdevel.corpus <- make.email.corpus('/data/rdevel')
+Garbage collection 59 = 50+5+4 (level 0) ... 
+23.0 Mbytes of cons cells used (81%)
+4.7 Mbytes of vectors used (59%)
+Garbage collection 60 = 50+5+5 (level 2) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 61 = 51+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 62 = 52+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 63 = 53+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 64 = 54+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 65 = 55+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 66 = 56+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 67 = 57+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 68 = 58+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 69 = 59+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 70 = 60+5+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 71 = 60+6+5 (level 1) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 72 = 61+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 73 = 62+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 74 = 63+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 75 = 64+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 76 = 65+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 77 = 66+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 78 = 67+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 79 = 68+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 80 = 69+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 81 = 70+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 82 = 71+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 83 = 72+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 84 = 73+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 85 = 74+6+5 (level 0) ... 
+22.5 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 86 = 75+6+5 (level 0) ... 
+22.6 Mbytes of cons cells used (70%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 87 = 76+6+5 (level 0) ... 
+22.6 Mbytes of cons cells used (71%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 88 = 77+6+5 (level 0) ... 
+22.6 Mbytes of cons cells used (71%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 89 = 78+6+5 (level 0) ... 
+22.6 Mbytes of cons cells used (71%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 90 = 79+6+5 (level 0) ... 
+22.6 Mbytes of cons cells used (71%)
+4.2 Mbytes of vectors used (53%)
+Garbage collection 91 = 80+6+5 (level 0) ... 
+23.6 Mbytes of cons cells used (74%)
+5.4 Mbytes of vectors used (68%)
+Garbage collection 92 = 80+7+5 (level 1) ... 
+24.0 Mbytes of cons cells used (75%)
+6.1 Mbytes of vectors used (77%)
+Garbage collection 93 = 81+7+5 (level 0) ... 
+24.3 Mbytes of cons cells used (76%)
+6.6 Mbytes of vectors used (83%)
+Garbage collection 94 = 81+8+5 (level 1) ... 
+24.5 Mbytes of cons cells used (77%)
+6.9 Mbytes of vectors used (87%)
+Garbage collection 95 = 81+8+6 (level 2) ... 
+24.7 Mbytes of cons cells used (69%)
+7.1 Mbytes of vectors used (76%)
+Garbage collection 96 = 82+8+6 (level 0) ... 
+25.2 Mbytes of cons cells used (71%)
+7.8 Mbytes of vectors used (83%)
+Garbage collection 97 = 82+9+6 (level 1) ... 
+25.5 Mbytes of cons cells used (71%)
+8.3 Mbytes of vectors used (88%)
+Garbage collection 98 = 82+9+7 (level 2) ... 
+25.7 Mbytes of cons cells used (65%)
+8.6 Mbytes of vectors used (79%)
+Garbage collection 99 = 83+9+7 (level 0) ... 
+26.2 Mbytes of cons cells used (66%)
+9.2 Mbytes of vectors used (85%)
+Garbage collection 100 = 83+10+7 (level 1) ... 
+26.5 Mbytes of cons cells used (67%)
+9.7 Mbytes of vectors used (89%)
+Garbage collection 101 = 83+10+8 (level 2) ... 
+26.8 Mbytes of cons cells used (61%)
+10.1 Mbytes of vectors used (81%)
+Garbage collection 102 = 84+10+8 (level 0) ... 
+27.4 Mbytes of cons cells used (62%)
+10.8 Mbytes of vectors used (87%)
+Garbage collection 103 = 84+10+9 (level 2) ... 
+27.7 Mbytes of cons cells used (58%)
+11.3 Mbytes of vectors used (82%)
+Garbage collection 104 = 85+10+9 (level 0) ... 
+28.3 Mbytes of cons cells used (59%)
+12.1 Mbytes of vectors used (88%)
+Garbage collection 105 = 85+11+9 (level 1) ... 
+28.6 Mbytes of cons cells used (60%)
+12.7 Mbytes of vectors used (92%)
+Garbage collection 106 = 85+11+10 (level 2) ... 
+28.8 Mbytes of cons cells used (60%)
+13.0 Mbytes of vectors used (84%)
+Garbage collection 107 = 86+11+10 (level 0) ... 
+29.2 Mbytes of cons cells used (61%)
+13.5 Mbytes of vectors used (87%)
+Garbage collection 108 = 86+12+10 (level 1) ... 
+29.4 Mbytes of cons cells used (61%)
+14.8 Mbytes of vectors used (95%)
+Garbage collection 109 = 86+12+11 (level 2) ... 
+29.5 Mbytes of cons cells used (61%)
+14.4 Mbytes of vectors used (85%)
+Garbage collection 110 = 87+12+11 (level 0) ... 
+30.1 Mbytes of cons cells used (63%)
+15.2 Mbytes of vectors used (89%)
+Garbage collection 111 = 87+13+11 (level 1) ... 
+30.4 Mbytes of cons cells used (63%)
+15.7 Mbytes of vectors used (92%)
+Garbage collection 112 = 87+13+12 (level 2) ... 
+30.7 Mbytes of cons cells used (58%)
+16.2 Mbytes of vectors used (86%)
+Garbage collection 113 = 88+13+12 (level 0) ... 
+31.2 Mbytes of cons cells used (59%)
+16.8 Mbytes of vectors used (89%)
+Garbage collection 114 = 88+14+12 (level 1) ... 
+31.7 Mbytes of cons cells used (60%)
+17.5 Mbytes of vectors used (93%)
+Garbage collection 115 = 88+14+13 (level 2) ... 
+32.0 Mbytes of cons cells used (61%)
+18.0 Mbytes of vectors used (87%)
+Garbage collection 116 = 89+14+13 (level 0) ... 
+32.6 Mbytes of cons cells used (62%)
+18.8 Mbytes of vectors used (91%)
+Garbage collection 117 = 89+15+13 (level 1) ... 
+32.9 Mbytes of cons cells used (63%)
+19.3 Mbytes of vectors used (93%)
+Garbage collection 118 = 89+15+14 (level 2) ... 
+33.2 Mbytes of cons cells used (58%)
+19.7 Mbytes of vectors used (87%)
+Garbage collection 119 = 90+15+14 (level 0) ... 
+33.9 Mbytes of cons cells used (59%)
+20.3 Mbytes of vectors used (90%)
+Garbage collection 120 = 90+15+15 (level 2) ... 
+34.4 Mbytes of cons cells used (60%)
+20.5 Mbytes of vectors used (85%)
+Garbage collection 121 = 91+15+15 (level 0) ... 
+34.9 Mbytes of cons cells used (61%)
+20.8 Mbytes of vectors used (86%)
+Garbage collection 122 = 91+16+15 (level 1) ... 
+35.5 Mbytes of cons cells used (62%)
+21.1 Mbytes of vectors used (87%)
+Garbage collection 123 = 91+16+16 (level 2) ... 
+36.0 Mbytes of cons cells used (63%)
+21.3 Mbytes of vectors used (82%)
+Garbage collection 124 = 92+16+16 (level 0) ... 
+36.5 Mbytes of cons cells used (64%)
+21.6 Mbytes of vectors used (83%)
+Garbage collection 125 = 92+17+16 (level 1) ... 
+37.0 Mbytes of cons cells used (64%)
+21.9 Mbytes of vectors used (84%)
+Garbage collection 126 = 92+17+17 (level 2) ... 
+37.5 Mbytes of cons cells used (60%)
+22.1 Mbytes of vectors used (79%)
+Garbage collection 127 = 93+17+17 (level 0) ... 
+38.1 Mbytes of cons cells used (61%)
+22.5 Mbytes of vectors used (80%)
+Garbage collection 128 = 93+18+17 (level 1) ... 
+38.7 Mbytes of cons cells used (62%)
+22.8 Mbytes of vectors used (81%)
+Garbage collection 129 = 93+18+18 (level 2) ... 
+39.2 Mbytes of cons cells used (63%)
+23.0 Mbytes of vectors used (77%)
+Garbage collection 130 = 94+18+18 (level 0) ... 
+39.8 Mbytes of cons cells used (64%)
+23.3 Mbytes of vectors used (78%)
+Garbage collection 131 = 95+18+18 (level 0) ... 
+40.3 Mbytes of cons cells used (65%)
+23.6 Mbytes of vectors used (79%)
+Garbage collection 132 = 96+18+18 (level 0) ... 
+40.9 Mbytes of cons cells used (66%)
+23.9 Mbytes of vectors used (80%)
+Garbage collection 133 = 97+18+18 (level 0) ... 
+41.4 Mbytes of cons cells used (66%)
+24.2 Mbytes of vectors used (81%)
+Garbage collection 134 = 97+19+18 (level 1) ... 
+41.9 Mbytes of cons cells used (67%)
+24.4 Mbytes of vectors used (81%)
+Garbage collection 135 = 97+19+19 (level 2) ... 
+42.3 Mbytes of cons cells used (63%)
+24.6 Mbytes of vectors used (77%)
+Garbage collection 136 = 98+19+19 (level 0) ... 
+55.5 Mbytes of cons cells used (82%)
+31.4 Mbytes of vectors used (98%)
+Garbage collection 137 = 98+20+19 (level 1) ... 
+56.9 Mbytes of cons cells used (84%)
+32.1 Mbytes of vectors used (100%)
+Garbage collection 138 = 98+20+20 (level 2) ... 
+46.9 Mbytes of cons cells used (64%)
+24.8 Mbytes of vectors used (72%)
+> print(date())
+[1] "Mon Dec 16 12:42:46 2013"
+> rdevel.corpus <- clean.email.corpus(rdevel.corpus)
+Garbage collection 139 = 99+20+20 (level 0) ... 
+55.4 Mbytes of cons cells used (76%)
+29.2 Mbytes of vectors used (85%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.4 Mbytes of cons cells used (64%)
+26.6 Mbytes of vectors used (73%)
+Garbage collection 140 = 99+20+21 (level 2) ... 
+50.1 Mbytes of cons cells used (63%)
+26.5 Mbytes of vectors used (72%)
+Garbage collection 141 = 100+20+21 (level 0) ... 
+54.3 Mbytes of cons cells used (69%)
+30.3 Mbytes of vectors used (83%)
+Garbage collection 142 = 100+21+21 (level 1) ... 
+56.4 Mbytes of cons cells used (71%)
+31.5 Mbytes of vectors used (86%)
+Garbage collection 143 = 100+21+22 (level 2) ... 
+58.4 Mbytes of cons cells used (69%)
+32.5 Mbytes of vectors used (83%)
+Garbage collection 144 = 100+22+22 (level 1) ... 
+67.0 Mbytes of cons cells used (79%)
+36.8 Mbytes of vectors used (94%)
+Garbage collection 145 = 100+22+23 (level 2) ... 
+60.5 Mbytes of cons cells used (66%)
+31.5 Mbytes of vectors used (76%)
+Garbage collection 146 = 101+22+23 (level 0) ... 
+80.9 Mbytes of cons cells used (88%)
+41.6 Mbytes of vectors used (100%)
+Garbage collection 147 = 101+22+24 (level 2) ... 
+80.9 Mbytes of cons cells used (82%)
+41.6 Mbytes of vectors used (91%)
+Garbage collection 148 = 102+22+24 (level 0) ... 
+88.8 Mbytes of cons cells used (90%)
+45.6 Mbytes of vectors used (100%)
+Garbage collection 149 = 102+22+25 (level 2) ... 
+80.5 Mbytes of cons cells used (77%)
+41.5 Mbytes of vectors used (86%)
+Garbage collection 150 = 103+22+25 (level 0) ... 
+89.7 Mbytes of cons cells used (85%)
+46.1 Mbytes of vectors used (95%)
+Garbage collection 151 = 103+23+25 (level 1) ... 
+91.0 Mbytes of cons cells used (87%)
+46.7 Mbytes of vectors used (96%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.2 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 152 = 103Garbage collection 152 = 103+23+26 (level 2) ... 
+58.1 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
++23+26 (level 2) ... 
+58.2 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+59.0 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+58.9 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+58.9 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+59.0 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+58.9 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+58.9 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+59.0 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+58.9 Mbytes of cons cells used (56%)
+30.7 Mbytes of vectors used (63%)
+Garbage collection 152 = 103+23+26 (level 2) ... 
+58.0 Mbytes of cons cells used (55%)
+30.3 Mbytes of vectors used (62%)
+Garbage collection 153 = 104+23+26 (level 0) ... 
+65.3 Mbytes of cons cells used (62%)
+35.7 Mbytes of vectors used (74%)
+Garbage collection 154 = 105+23+26 (level 0) ... 
+82.7 Mbytes of cons cells used (79%)
+44.3 Mbytes of vectors used (91%)
+Garbage collection 155 = 105+23+27 (level 2) ... 
+80.6 Mbytes of cons cells used (72%)
+41.4 Mbytes of vectors used (80%)
+Garbage collection 156 = 106+23+27 (level 0) ... 
+92.4 Mbytes of cons cells used (82%)
+47.3 Mbytes of vectors used (92%)
+Garbage collection 157 = 106+24+27 (level 1) ... 
+87.9 Mbytes of cons cells used (78%)
+45.1 Mbytes of vectors used (87%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.0 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.0 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.1 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.0 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.0 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.0 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.1 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.2 Mbytes of cons cells used (53%)
+31.1 Mbytes of vectors used (60%)
+Garbage collection 158 = 106+24+28 (level 2) ... 
+59.0 Mbytes of cons cells used (52%)
+32.5 Mbytes of vectors used (63%)
+Garbage collection 159 = 107+24+28 (level 0) ... 
+69.0 Mbytes of cons cells used (61%)
+40.4 Mbytes of vectors used (78%)
+Garbage collection 160 = 108+24+28 (level 0) ... 
+87.5 Mbytes of cons cells used (78%)
+49.8 Mbytes of vectors used (97%)
+Garbage collection 161 = 108+25+28 (level 1) ... 
+87.7 Mbytes of cons cells used (78%)
+48.2 Mbytes of vectors used (94%)
+Garbage collection 162 = 108+25+29 (level 2) ... 
+85.1 Mbytes of cons cells used (71%)
+45.1 Mbytes of vectors used (82%)
+Garbage collection 163 = 109+25+29 (level 0) ... 
+94.8 Mbytes of cons cells used (79%)
+49.9 Mbytes of vectors used (91%)
+Garbage collection 164 = 109+26+29 (level 1) ... 
+99.6 Mbytes of cons cells used (83%)
+52.4 Mbytes of vectors used (96%)
+Garbage collection 165 = 109+26+30 (level 2) ... 
+60.2 Mbytes of cons cells used (50%)
+32.7 Mbytes of vectors used (60%)
+Garbage collection 166 = 110+26+30 (level 0) ... 
+71.7 Mbytes of cons cells used (60%)
+44.9 Mbytes of vectors used (82%)
+Garbage collection 167 = 110+27+30 (level 1) ... 
+75.0 Mbytes of cons cells used (62%)
+47.9 Mbytes of vectors used (88%)
+Garbage collection 168 = 110+27+31 (level 2) ... 
+79.2 Mbytes of cons cells used (66%)
+47.2 Mbytes of vectors used (81%)
+Garbage collection 169 = 111+27+31 (level 0) ... 
+92.5 Mbytes of cons cells used (77%)
+53.9 Mbytes of vectors used (93%)
+Garbage collection 170 = 111+28+31 (level 1) ... 
+84.0 Mbytes of cons cells used (70%)
+49.7 Mbytes of vectors used (86%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.2 Mbytes of cons cells used (53%)
+38.5 Mbytes of vectors used (66%)
+Garbage collection 171 = 111+28+32 (level 2) ... 
+64.1 Mbytes of cons cells used (53%)
+38.4 Mbytes of vectors used (62%)
+Garbage collection 172 = 112+28+32 (level 0) ... 
+75.5 Mbytes of cons cells used (63%)
+45.4 Mbytes of vectors used (74%)
+Garbage collection 173 = 113+28+32 (level 0) ... 
+108.0 Mbytes of cons cells used (90%)
+61.5 Mbytes of vectors used (100%)
+Garbage collection 174 = 113+28+33 (level 2) ... 
+98.6 Mbytes of cons cells used (77%)
+56.8 Mbytes of vectors used (87%)
+Garbage collection 175 = 114+28+33 (level 0) ... 
+103.5 Mbytes of cons cells used (81%)
+59.3 Mbytes of vectors used (91%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+108.4 Mbytes of cons cells used (84%)
+62.0 Mbytes of vectors used (95%)
+Garbage collection 176 = 114+29+33 (level 1) ... 
+107.7 Mbytes of cons cells used (84%)
+61.4 Mbytes of vectors used (94%)
+Garbage collection 177 = 114+29+34 (level 2) ... 
+65.9 Mbytes of cons cells used (51%)
+40.7 Mbytes of vectors used (62%)
+Garbage collection 178 = 115+29+34 (level 0) ... 
+81.8 Mbytes of cons cells used (64%)
+51.1 Mbytes of vectors used (78%)
+Garbage collection 179 = 116+29+34 (level 0) ... 
+110.3 Mbytes of cons cells used (86%)
+65.2 Mbytes of vectors used (100%)
+Garbage collection 180 = 116+29+35 (level 2) ... 
+99.9 Mbytes of cons cells used (73%)
+58.5 Mbytes of vectors used (85%)
+Garbage collection 181 = 117+29+35 (level 0) ... 
+106.7 Mbytes of cons cells used (78%)
+61.9 Mbytes of vectors used (90%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.1 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... Garbage collection 182 = 117
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
++30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.8 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+108.7 Mbytes of cons cells used (79%)
+63.0 Mbytes of vectors used (91%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
++30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+63.5 Mbytes of cons cells used (46%)
+37.6 Mbytes of vectors used (54%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.9 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+63.8 Mbytes of cons cells used (47%)
+37.8 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.3 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.2 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 185 = 119+30+36 (level 0) ... 
+64.3 Mbytes of cons cells used (47%)
+38.0 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.6 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.5 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 186 = 120+30+36 (level 0) ... 
+64.6 Mbytes of cons cells used (47%)
+38.2 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.8 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.7 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.8 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.7 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.8 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.7 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.7 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 187 = 120+31+36 (level 1) ... 
+64.8 Mbytes of cons cells used (47%)
+38.3 Mbytes of vectors used (55%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.0 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.0 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.0 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.0 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.0 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.1 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.1 Mbytes of cons cells used (47%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.3 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 188 = 121+31+36 (level 0) ... 
+65.1 Mbytes of cons cells used (48%)
+38.5 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.3 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.3 Mbytes of cons cells used (48%)
+38.6 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.3 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.3 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.4 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.7 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.4 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.6 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.6 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 189 = 122+31+36 (level 0) ... 
+65.5 Mbytes of cons cells used (48%)
+38.7 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.6 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.6 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.6 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+66.0 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+65.9 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.7 Mbytes of cons cells used (48%)
+38.8 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+65.9 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+65.9 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+65.9 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 190 = 123+31+36 (level 0) ... 
+65.8 Mbytes of cons cells used (48%)
+38.9 Mbytes of vectors used (56%)
+Garbage collection 191 = 124+31+36 (level 0) ... 
+65.9 Mbytes of cons cells used (48%)
+39.0 Mbytes of vectors used (56%)
+Garbage collection 182 = 117+30+35 (level 1) ... 
+111.4 Mbytes of cons cells used (81%)
+64.8 Mbytes of vectors used (94%)
+Garbage collection 192 = 125+31+36 (level 0) ... 
+66.1 Mbytes of cons cells used (48%)
+39.1 Mbytes of vectors used (57%)
+Garbage collection 183 = 117+30+36 (level 2) ... 
+67.8 Mbytes of cons cells used (49%)
+40.5 Mbytes of vectors used (59%)
+Garbage collection 184 = 118+30+36 (level 0) ... 
+98.9 Mbytes of cons cells used (72%)
+57.5 Mbytes of vectors used (83%)
+> print(date())
+[1] "Mon Dec 16 12:43:00 2013"
+> print(summary(rdevel.corpus))
+Garbage collection 185 = 118+31+36 (level 1) ... 
+86.1 Mbytes of cons cells used (63%)
+51.2 Mbytes of vectors used (74%)
+A corpus with 4584 text documents
+
+The metadata consists of 2 tag-value pairs and a data frame
+Available tags are:
+  create_date creator 
+Available variables in the data frame are:
+  MetaID 
+NULL
+> save(rdevel.corpus, file='/data/rdevel-corpus.rda', compress='xz')
+> 
+> # now make and save Document-Term Matrix
+> rdevel.dtm <- DocumentTermMatrix(rdevel.corpus)
+Garbage collection 186 = 119+31+36 (level 0) ... 
+95.2 Mbytes of cons cells used (70%)
+55.7 Mbytes of vectors used (81%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119Garbage collection 187 = 119+32+36 (level 1) ... +32
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
++36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+103.2 Mbytes of cons cells used (75%)
+59.7 Mbytes of vectors used (86%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+54.0 Mbytes of cons cells used (39%)
+23.9 Mbytes of vectors used (35%)
+Garbage collection 187 = 119+32+36 (level 1) ... 
+104.0 Mbytes of cons cells used (76%)
+62.6 Mbytes of vectors used (91%)
+Garbage collection 188 = 119+32+37 (level 2) ... 
+55.4 Mbytes of cons cells used (40%)
+29.1 Mbytes of vectors used (42%)
+Garbage collection 189 = 120+32+37 (level 0) ... 
+57.3 Mbytes of cons cells used (42%)
+39.2 Mbytes of vectors used (57%)
+Garbage collection 190 = 120+32+38 (level 2) ... 
+47.6 Mbytes of cons cells used (35%)
+36.3 Mbytes of vectors used (53%)
+Garbage collection 191 = 121+32+38 (level 0) ... 
+47.7 Mbytes of cons cells used (35%)
+57.5 Mbytes of vectors used (83%)
+Garbage collection 192 = 121+32+39 (level 2) ... 
+47.5 Mbytes of cons cells used (35%)
+66.1 Mbytes of vectors used (88%)
+Garbage collection 193 = 121+32+40 (level 2) ... 
+47.5 Mbytes of cons cells used (35%)
+57.1 Mbytes of vectors used (71%)
+Garbage collection 194 = 121+32+41 (level 2) ... 
+38.4 Mbytes of cons cells used (28%)
+32.4 Mbytes of vectors used (41%)
+> save(rdevel.dtm, file='/data/rdevel-dtm.rda', compress='xz')
+> 
+> # Authors
+> authors <- lapply(rdevel.corpus, Author)
+Garbage collection 195 = 122+32+41 (level 0) ... 
+38.6 Mbytes of cons cells used (28%)
+40.9 Mbytes of vectors used (51%)
+> authors <- sapply(authors, paste, collapse = " ")
+> print(sort(table(authors), decreasing = TRUE)[1:20])
+authors
+       ripley at stats.ox.ac.uk (Prof Brian Ripley) 
+                                                483 
+           murdoch at stats.uwo.ca (Duncan Murdoch) 
+                                                305 
+    ggrothendieck at gmail.com (Gabor Grothendieck) 
+                                                192 
+       p.dalgaard at biostat.ku.dk (Peter Dalgaard) 
+                                                163 
+                 sfalcon at fhcrc.org (Seth Falcon) 
+                                                156 
+    maechler at stat.math.ethz.ch (Martin Maechler) 
+                                                135 
+ripley at stats.ox.ac.uk (ripley at stats.ox.ac.uk) 
+                                                 86 
+        tlumley at u.washington.edu (Thomas Lumley) 
+                                                 74 
+    hin-tak.leung at cimr.cam.ac.uk (Hin-Tak Leung) 
+                                                 67 
+               jmc at r-project.org (John Chambers) 
+                                                 66 
+     simon.urbanek at r-project.org (Simon Urbanek) 
+                                                 65 
+              edd at debian.org (Dirk Eddelbuettel) 
+                                                 57 
+   ligges at statistik.uni-dortmund.de (Uwe Ligges) 
+                                                 51 
+            h.wickham at gmail.com (hadley wickham) 
+                                                 50 
+   pgilbert at bank-banque-canada.ca (Paul Gilbert) 
+                                                 49 
+  gregor.gorjanc at bfro.uni-lj.si (Gregor Gorjanc) 
+                                                 47 
+     deepayan.sarkar at gmail.com (Deepayan Sarkar) 
+                                                 37 
+         hb at stat.berkeley.edu (Henrik Bengtsson) 
+                                                 37 
+         r.hankin at noc.soton.ac.uk (Robin Hankin) 
+                                                 36 
+              hb at maths.lth.se (Henrik Bengtsson) 
+                                                 33 
+> 
+> # Topics / Headings
+> headings <- lapply(rdevel.corpus, Heading)
+Garbage collection 196 = 123+32+41 (level 0) ... 
+39.1 Mbytes of cons cells used (29%)
+41.1 Mbytes of vectors used (51%)
+> headings <- sapply(headings, paste, collapse = " ")
+> print(sort(table(headings), decreasing = TRUE)[1:20])
+headings
+                                       [Rd] 'CanMakeUseOf' field 
+                                                              46 
+       [Rd] how to determine if a function's result is invisible 
+                                                              33 
+                                 [Rd] attributes of environments 
+                                                              24 
+                        [Rd] Links to non-vignette documentation 
+                                                              22 
+      [Rd] about integration of a  library into package creation 
+                                                              20 
+                                                 [Rd] as.missing 
+                                                              19 
+                                           [Rd] Help for methods 
+                                                              19 
+                                        [Rd] S4 Methods dispatch 
+                                                              18 
+           [Rd] Any interest in "merge" and "by" implementations 
+                                                              17 
+                    [Rd] Error condition in evaluating a promise 
+                                                              16 
+[Rd] options("quit.with.no.save"), and Windows installer changes 
+                                                              16 
+                                  [Rd] prod(numeric(0)) surprise 
+                                                              16 
+            [Rd] Speed of runif() on different Operating Systems 
+                                                              16 
+                [Rd] Stack checking, core dumps, and embedding R 
+                                                              16 
+                                        [Rd] UTF-8 and .Rd files 
+                                                              16 
+                            [Rd] data frame subset patch, take 2 
+                                                              15 
+                          [Rd] Source references from the parser 
+                                                              15 
+   [Rd] 'CanMakeUseOf' field  [was ".. Add 'fields' argument ..] 
+                                                              14 
+                                                   [Rd] c.factor 
+                                                              14 
+                   [Rd] memory issues with new release (PR#9344) 
+                                                              14 
+> 
+74.36user 14.02system 0:31.28elapsed 282%CPU (0avgtext+0avgdata 396972maxresident)k
+0inputs+4296outputs (0major+2496862minor)pagefaults 0swaps
