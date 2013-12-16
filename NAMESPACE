@@ -1,3 +1,4 @@
+export(clean.email.corpus)
 export(make.email.corpus)
 importFrom(tm,DirSource)
 importFrom(tm,VCorpus)
