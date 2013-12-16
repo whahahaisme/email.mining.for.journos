@@ -40,7 +40,7 @@ clean.email.corpus <- function(email.corpus) {
   print(gc())
   email.corpus <- tm_map(email.corpus, stemDocument, language='english')
   print(gc())
-  email.corpus <- tm_map(email.corpus, removeWords, stopwords('english'))
-  print(gc())
+  #email.corpus <- tm_map(email.corpus, removeWords, stopwords('english'))
+  #print(gc())
   return(email.corpus)
 }
