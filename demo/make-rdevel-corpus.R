@@ -16,13 +16,15 @@ require(tm)
 system('rm -f rdevel.db')
 
 print(date())
-rdevel.corpus <- make.email.corpus('/data/2006')
+rdevel.corpus <- make.email.corpus('/data/rdevel')
 print(date())
 print(summary(rdevel.corpus))
 save(rdevel.corpus, file='/data/rdevel-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
+print(gc())
 rdevel.dtm <- DocumentTermMatrix(rdevel.corpus)
+print(gc())
 save(rdevel.dtm, file='/data/rdevel-dtm.rda', compress='xz')
 
 # Authors
