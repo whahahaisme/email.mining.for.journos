@@ -1,20 +1,22 @@
-\name{make.email.corpus}
-\alias{make.email.corpus}
+\name{clean.email.corpus}
+\alias{clean.email.corpus}
 \title{Make an email corpus using the 'tm' and 'tm.plugin.mail' packages}
 \usage{
-make.email.corpus(DirSource)
+clean.email.corpus(email.corpus)
 }
 \arguments{
-  \item{DirSource}{absolute path to a directory containing
-  email messages, one per file}
+  \item{email.corpus}{an email corpus made via
+  make.email.corpus}
 }
 \description{
 'make.email.corpus' makes an email corpus from a flattened
 directory of email message files.
 }
 \examples{
-# rdevel.corpus <- make.email.corpus('/data/rdevel')
+# rdevel.corpus <- clean.email.corpus('/data/rdevel')
 }
+\keyword{cleaning}
 \keyword{corpus}
+\keyword{data}
 \keyword{email}
 
