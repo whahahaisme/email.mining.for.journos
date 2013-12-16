@@ -13,8 +13,6 @@ old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
 require(email.mining.for.journos)
 require(tm)
 
-system('rm -f rdevel.db')
-
 print(date())
 rdevel.corpus <- make.email.corpus('/data/rdevel')
 print(date())
