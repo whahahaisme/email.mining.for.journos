@@ -7,7 +7,7 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
+old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
 
 # libraries needed
 require(email.mining.for.journos)
