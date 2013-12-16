@@ -11,6 +11,7 @@ Depends:
 Imports:
     tm (>= 0.5-9.1),
     tm.plugin.mail (>= 0.0-7),
-    tm.plugin.webmining (>= 0.9)
+    tm.plugin.webmining (>= 0.9),
+    SnowballC (>= 0.5)
 License: AGPL-3
 LazyData: true
