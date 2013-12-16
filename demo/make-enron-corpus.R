@@ -16,19 +16,14 @@ require(tm)
 system('rm -f enron.db')
 
 print(date())
-enron.corpus <- make.email.corpus(
-  '/home/Email/enron/enron_mail_20110402/flattened',
-  Permanent=FALSE,
-  dbName='enron.db'
-)
+enron.corpus <- make.email.corpus('/data/enron')
 print(date())
-
 print(summary(enron.corpus))
-save(enron.corpus, file='/home/Email/enron-corpus.rda', compress='xz')
+save(enron.corpus, file='/data/enron-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
 enron.dtm <- DocumentTermMatrix(enron.corpus)
-save(enron.dtm, file='/home/Email/enron-dtm.rda', compress='xz')
+save(enron.dtm, file='/data/enron-dtm.rda', compress='xz')
 
 # Authors
 authors <- lapply(enron.corpus, Author)
@@ -38,7 +33,4 @@ print(sort(table(authors), decreasing = TRUE)[1:20])
 # Topics / Headings
 headings <- lapply(enron.corpus, Heading)
 headings <- sapply(headings, paste, collapse = " ")
-
-# The sorted contingency table shows the biggest topics' names and the amount of postings
-print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
-bigTopics <- names(bigTopicsTable)
+print(sort(table(headings), decreasing = TRUE)[1:20])

@@ -16,19 +16,14 @@ require(tm)
 system('rm -f rdevel.db')
 
 print(date())
-rdevel.corpus <- make.email.corpus(
-  '/home/Email/2006',
-  Permanent=FALSE,
-  dbName='rdevel.db'
-)
+rdevel.corpus <- make.email.corpus('/data/2006')
 print(date())
-
 print(summary(rdevel.corpus))
-save(rdevel.corpus, file='/home/Email/rdevel-corpus.rda', compress='xz')
+save(rdevel.corpus, file='/data/rdevel-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
 rdevel.dtm <- DocumentTermMatrix(rdevel.corpus)
-save(rdevel.dtm, file='/home/Email/rdevel-dtm.rda', compress='xz')
+save(rdevel.dtm, file='/data/rdevel-dtm.rda', compress='xz')
 
 # Authors
 authors <- lapply(rdevel.corpus, Author)
@@ -38,7 +33,4 @@ print(sort(table(authors), decreasing = TRUE)[1:20])
 # Topics / Headings
 headings <- lapply(rdevel.corpus, Heading)
 headings <- sapply(headings, paste, collapse = " ")
-
-# The sorted contingency table shows the biggest topics' names and the amount of postings
-print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
-bigTopics <- names(bigTopicsTable)
+print(sort(table(headings), decreasing = TRUE)[1:20])
