@@ -16,6 +16,8 @@ require(tm)
 print(date())
 rdevel.corpus <- make.email.corpus('/data/rdevel')
 print(date())
+rdevel.corpus <- clean.email.corpus(rdevel.corpus)
+print(date())
 print(summary(rdevel.corpus))
 save(rdevel.corpus, file='/data/rdevel-corpus.rda', compress='xz')
 
