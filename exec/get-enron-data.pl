@@ -54,7 +54,8 @@ while (my $messageline = shift @messagelines) {
       ($messageline =~ /\/inbox\//);
   }
   $messagecount += 1;
-  print "${messagecount} messages processed\n" if $messagecount % 5000 == 0;
+  print `date`,
+    "${messagecount} messages processed\n" if $messagecount % 1000 == 0;
 }
 
 print "${messagecount} messages processed\n";
