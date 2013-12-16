@@ -26,9 +26,9 @@ print(date())
 print(summary(enron.corpus))
 save(enron.corpus, file='/home/Email/enron-corpus.rda', compress='xz')
 
-# now make and save Term-Document Matrix
-enron.tdm <- TermDocumentMatrix(enron.corpus)
-save(enron.tdm, file='/home/Email/enron-tdm.rda', compress='xz')
+# now make and save Document-Term Matrix
+enron.dtm <- DocumentTermMatrix(enron.corpus)
+save(enron.dtm, file='/home/Email/enron-dtm.rda', compress='xz')
 
 # Authors
 authors <- lapply(enron.corpus, Author)
@@ -42,15 +42,3 @@ headings <- sapply(headings, paste, collapse = " ")
 # The sorted contingency table shows the biggest topics' names and the amount of postings
 print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
 bigTopics <- names(bigTopicsTable)
-
-# Third topic (first two are 'RE:' and 'FW:')
-topicCol <- enron.corpus[headings == bigTopics[3]]
-print(unique(sapply(topicCol, Author)))
-
-# Fourth topic
-topicCol <- enron.corpus[headings == bigTopics[4]]
-print(unique(sapply(topicCol, Author)))
-
-# find frequent terms
-#f <- findFreqTerms(enron.tdm, 30, 31)
-#print(sort(f[-grep("[0-9]", f)]))

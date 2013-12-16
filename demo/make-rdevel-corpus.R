@@ -26,9 +26,9 @@ print(date())
 print(summary(rdevel.corpus))
 save(rdevel.corpus, file='/home/Email/rdevel-corpus.rda', compress='xz')
 
-# now make and save Term-Document Matrix
-rdevel.tdm <- TermDocumentMatrix(rdevel.corpus)
-save(rdevel.tdm, file='/home/Email/rdevel-tdm.rda', compress='xz')
+# now make and save Document-Term Matrix
+rdevel.dtm <- DocumentTermMatrix(rdevel.corpus)
+save(rdevel.dtm, file='/home/Email/rdevel-dtm.rda', compress='xz')
 
 # Authors
 authors <- lapply(rdevel.corpus, Author)
@@ -42,30 +42,3 @@ headings <- sapply(headings, paste, collapse = " ")
 # The sorted contingency table shows the biggest topics' names and the amount of postings
 print(bigTopicsTable <- sort(table(headings), decreasing = TRUE)[1:20])
 bigTopics <- names(bigTopicsTable)
-
-# First topic
-topicCol <- rdevel.corpus[headings == bigTopics[1]]
-print(unique(sapply(topicCol, Author)))
-
-# Second topic
-topicCol <- rdevel.corpus[headings == bigTopics[2]]
-print(unique(sapply(topicCol, Author)))
-
-# How many postings deal with bugs?
-print(
-  bugCol <- tm_filter(
-    rdevel.corpus,
-    FUN = searchFullText,
-    "[^[:alpha:]]+bug[^[:alpha:]]+",
-    doclevel = TRUE
-  )
-)
-
-# Most active authors about bugs
-bugColAuthors <- lapply(bugCol, Author)
-bugColAuthors <- sapply(bugColAuthors, paste, collapse = " ")
-print(sort(table(bugColAuthors), decreasing = TRUE)[1:5])
-
-# find frequent terms
-f <- findFreqTerms(rdevel.tdm, 30, 31)
-print(sort(f[-grep("[0-9]", f)]))
