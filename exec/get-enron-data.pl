@@ -10,7 +10,7 @@
 #
 
 # make a directory
-my $datadir = "/home/Email/enron";
+my $datadir = "/data/enron-raw";
 system "mkdir -p ${datadir}";
 chdir "${datadir}";
 
@@ -32,12 +32,12 @@ my @messagelines = `grep -m 1 -r -e 'Message-ID:' ${directory}/maildir`;
 # now we have an array of message ID lines of the form
 # <filename>:Message-ID: <message-ID>
 my $messagecount = 0; # counter
-my $destination = "${directory}/flattened"; # where to put the messages
+my $destination = "/data/enron"; # where to put the messages
 system "rm -fr ${destination}; mkdir -p ${destination}";
+my $inboxes = "/data/inboxes"; # just messages in 'inbox'
+system "rm -fr ${inboxes}; mkdir -p ${inboxes}";
 
-# to save space, use symbolic links!
 while (my $messageline = shift @messagelines) {
-  next if $messageline !~ /\/inbox\//; # just use the 'Inbox' messages!
   chomp $messageline; 
 
   # make a reasonable file name from the message ID
@@ -45,14 +45,16 @@ while (my $messageline = shift @messagelines) {
   $messageline =~ s/\@/.at./;
   $messageline =~ s/>.*$//; 
   my ($filename, $messageid) = split /:Message-ID: /, $messageline;
-  if (!defined $messageid) {
+  if (!defined $messageid) { # is the file missing?
     print "${messageline}\n";
   }
   else {
     system "ln -sf ${datadir}/${filename} \'${destination}/${messageid}\'";
+    system "ln -sf ${datadir}/${filename} \'${inboxes}/${messageid}\'" if
+      ($messageline !~ /\/inbox\//);
   }
   $messagecount += 1;
-  print "${messagecount} messages processed\n" if $messagecount % 500 == 0;
+  print "${messagecount} messages processed\n" if $messagecount % 5000 == 0;
 }
 
 print "${messagecount} messages processed\n";
