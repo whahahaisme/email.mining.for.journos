@@ -13,7 +13,6 @@
 #'
 #' @keywords email corpus
 #' @export make.email.corpus
-#' @importFrom tm PCorpus
 #' @importFrom tm VCorpus
 #' @importFrom tm DirSource
 #' @importFrom tm.plugin.mail readMail
@@ -22,30 +21,17 @@
 #' @importFrom tm.plugin.webmining removeNonASCII
 #' @importFrom tm removePunctuation
 #' @importFrom tm stripWhitespace
-#' @importFrom SnowballC wordStem
+#' @importFrom tm stemDocument
 #' @importFrom tm removeWords
 #' @importFrom tm stopwords
 #' @param DirSource absolute path to a directory containing email messages, one per file
-#' @param Permanent TRUE for a Permanent corpus, FALSE (default) for Volatile
-#' @param dbName filename for the database used by a Permanent corpus
 #' @examples
-#' # rdevel.corpus <- make.email.corpus('/home/Email/2006', Permanent=FALSE, dbName='rdevel.db')
+#' # rdevel.corpus <- make.email.corpus('/home/Email/2006')
 
-make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
-  if (Permanent) {
-    email.corpus <- PCorpus(
-      DirSource(DirSource),
-      readerControl = list(
-        reader = readMail,
-        language = "en_US",
-        load = TRUE
-      ),
-      dbControl = list(
-        dbName = dbName
-      )
-    )
-  } else {
-    email.corpus <- VCorpus(
+make.email.corpus <- function(DirSource) {
+
+  # build the corpus first
+  email.corpus <- VCorpus(
       DirSource(DirSource),
       readerControl = list(
         reader = readMail,
@@ -53,7 +39,6 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
         load = TRUE
       )
     )
-  }
   
   # data cleaning
   email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
@@ -61,6 +46,6 @@ make.email.corpus <- function(DirSource, Permanent=FALSE, dbName='corpus.db') {
   email.corpus <- tm_map(email.corpus, removePunctuation)
   email.corpus <- tm_map(email.corpus, stripWhitespace)
   email.corpus <- tm_map(email.corpus, tolower)
-  email.corpus <- tm_map(email.corpus, wordStem)
+  email.corpus <- tm_map(email.corpus, stemDocument, language='english')
   email.corpus <- tm_map(email.corpus, removeWords, stopwords('english'))
 }
