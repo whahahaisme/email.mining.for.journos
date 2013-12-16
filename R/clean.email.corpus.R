@@ -32,6 +32,8 @@ clean.email.corpus <- function(email.corpus) {
   print(gc())
   email.corpus <- tm_map(email.corpus, removeNonASCII)
   print(gc())
+  email.corpus <- tm_map(email.corpus, removeNumbers)
+  print(gc())
   email.corpus <- tm_map(email.corpus, removePunctuation)
   print(gc())
   email.corpus <- tm_map(email.corpus, stripWhitespace)
