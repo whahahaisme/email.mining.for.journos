@@ -8,6 +8,7 @@
 #
 
 old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
+gcinfo(TRUE)
 
 # libraries needed
 require(email.mining.for.journos)
@@ -22,9 +23,7 @@ print(summary(rdevel.corpus))
 save(rdevel.corpus, file='/data/rdevel-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
-print(gc())
 rdevel.dtm <- DocumentTermMatrix(rdevel.corpus)
-print(gc())
 save(rdevel.dtm, file='/data/rdevel-dtm.rda', compress='xz')
 
 # Authors

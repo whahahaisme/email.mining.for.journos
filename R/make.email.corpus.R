@@ -31,6 +31,5 @@ make.email.corpus <- function(DirSource) {
       load = TRUE
     )
   )
-  print(gc())
   return(email.corpus)
 }

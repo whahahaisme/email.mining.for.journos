@@ -8,6 +8,7 @@
 #
 
 old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
+gcinfo(TRUE)
 
 # libraries needed
 require(email.mining.for.journos)
@@ -22,9 +23,7 @@ print(summary(inboxes.corpus))
 save(inboxes.corpus, file='/data/inboxes-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
-print(gc())
 inboxes.dtm <- DocumentTermMatrix(inboxes.corpus)
-print(gc())
 save(inboxes.dtm, file='/data/inboxes-dtm.rda', compress='xz')
 
 # Authors

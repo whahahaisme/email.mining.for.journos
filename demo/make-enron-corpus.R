@@ -8,6 +8,7 @@
 #
 
 old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
+gcinfo(TRUE)
 
 # libraries needed
 require(email.mining.for.journos)
@@ -20,9 +21,7 @@ print(summary(enron.corpus))
 save(enron.corpus, file='/data/enron-corpus.rda', compress='xz')
 
 # now make and save Document-Term Matrix
-print(gc())
 enron.dtm <- DocumentTermMatrix(enron.corpus)
-print(gc())
 save(enron.dtm, file='/data/enron-dtm.rda', compress='xz')
 
 # Authors

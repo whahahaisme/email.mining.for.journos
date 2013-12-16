@@ -30,20 +30,12 @@ clean.email.corpus <- function(email.corpus) {
 
   # data cleaning
   email.corpus <- tm_map(email.corpus, as.PlainTextDocument)
-  print(gc())
   email.corpus <- tm_map(email.corpus, removeNonASCII)
-  print(gc())
   email.corpus <- tm_map(email.corpus, removeNumbers)
-  print(gc())
   email.corpus <- tm_map(email.corpus, removePunctuation)
-  print(gc())
   email.corpus <- tm_map(email.corpus, stripWhitespace)
-  print(gc())
   email.corpus <- tm_map(email.corpus, tolower)
-  print(gc())
   email.corpus <- tm_map(email.corpus, stemDocument, language='english')
-  print(gc())
   #email.corpus <- tm_map(email.corpus, removeWords, stopwords('english'))
-  #print(gc())
   return(email.corpus)
 }
