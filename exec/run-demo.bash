@@ -9,11 +9,13 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-# start iostat
+# start monitors
 iostat 1 > ${1}.iostat.log &
+vmstat 1 > ${1}.iostat.log &
 
 # run the demo with performance capture
 /usr/bin/time R --no-save < ../demo/make-${1}-corpus.R 2>&1 | tee ${1}.log
 
-# kill iostat
+# kill monitors
 pkill iostat
+pkill vmstat
