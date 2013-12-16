@@ -12,7 +12,7 @@ ls()
 rm(list=ls())
 gc()
 
-old.mc.cores <- options(mc.cores = 8) # set to 1 for debugging
+old.mc.cores <- options(mc.cores = 2) # set to 1 for debugging
 gcinfo(TRUE)
 
 # libraries needed
