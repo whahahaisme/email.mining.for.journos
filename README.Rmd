@@ -7,21 +7,3 @@ An R package for email text mining
 1. Incorporate 'snatm' demos
 1. ...
 1. Profit!
-
-### References
-```{r echo=FALSE, message=FALSE, results='hide'}
-
-# Invisible citations here to force a bibliography
-library(knitcitations)
-bib <- read.bibtex("inst/presos/knitcitations.bib")
-cite(bib["Russell2013"])
-cite(bib["Bouchet-Valat2013"])
-cite(bib["Bohn2011"])
-cite(bib["Williams2011"])
-cite(bib["Williams2009"])
-cite(bib["Feinerer2008"])
-```
-
-```{r echo=FALSE, results='asis'}
-bibliography()
-```
