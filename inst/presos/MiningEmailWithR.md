@@ -18,7 +18,7 @@ type: prompt
 incremental: true
 
 - A _corpus_ (plural _corpora_) is a collection of documents
-- In the _tm_ package, there are two types of corpora
+- In the _tm_ package (<a href="http://www.jstatsoft.org/v25/i05/">Feinerer et al. 2008</a> ), there are two types of corpora
   - _Volatile_: Resides in RAM (but can be saved to and restored from disk!)
   - _Permanent_: Resides on disk with only some indexing in RAM
 
@@ -42,7 +42,7 @@ incremental: true
 - Replace variations on a word with its _stem_
 - Most often done using an algorithm called the _Porter Stemmer_
 - You'll also see the term _Snowball_ - that's the implemented version
-  - Example: replace "stem", "stemmer", "stemming", "stemmed" with "stem".
+  - Example: replace "stem", "stems", stemmer", "stemming", "stemmed" with "stem".
 
 Stopwords
 ========================================================
