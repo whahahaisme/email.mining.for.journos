@@ -135,8 +135,8 @@ One Final Note
 type: prompt
 incremental: true
 
-- The transpose of a document-term matrix is called ... wait for it ...
-  - A term-document matrix!
+- The _transpose_ of a document-term matrix is called ... wait for it ...
+  - A _term-document matrix!_
   - You'll see both in the literature
   - We'll stick with document-term matrix
   - That's the way R Commander's text mining code works
@@ -191,7 +191,14 @@ incremental: true
 - Profit!
 
 References
-========================================================
+==========
+type: prompt
+
+<small>
 ```{r echo=FALSE, results='asis', size='small'}
-bibliography(style = 'markdown')
+bibliography(
+  style = 'markdown',
+  ordering = c("authors", "year", "title", "url")
+)
 ```
+</small>
