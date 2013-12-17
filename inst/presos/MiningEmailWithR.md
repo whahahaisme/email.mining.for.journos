@@ -124,7 +124,7 @@ incremental: true
 
 - It works surprisingly well, actually
 - The tricky part is visualizing the multi-dimensional objects
-- See <a href="">Landauer et al. (2007)</a>  for some of the math and applications
+- See <a href="http://www.amazon.com/Handbook-Semantic-University-Institute-Cognitive-ebook/dp/B00CXU38Z4">Landauer et al. (2007)</a>  for some of the math and applications
 
 One Final Note
 ========================================================
@@ -195,5 +195,5 @@ of Mailing Lists.  *The R Journal*  **3**  (1)   11-18  [http://journal.r-projec
 - Milan Bouchet-Valat, Gilles Bastin,   (2013) RcmdrPlugin.temis, a Graphical Integrated Text Mining Solution in R.  *The R Journal*  **5**  (1)   188-196-NA  [http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf](http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf)
 - Ingo Feinerer, Kurt Hornik, David Meyer,   (2008) Text Mining Infrastructure in R.  *Journal of Statistical Software*  **25**  (5)   1-54  [http://www.jstatsoft.org/v25/i05/](http://www.jstatsoft.org/v25/i05/)
 - John Fox,   (2005) The R Commander: A Basic Statistics Graphical User Interface to R.  *Journal of Statistical Software*  **14**  (9)   1-42  [http://www.jstatsoft.org/v14/i09](http://www.jstatsoft.org/v14/i09)
-- Thomas Landauer, Danielle McNamara, Simon Dennis, Walter Kintsch,   (2007) Handbook of Latent Semantic Analysis.
+- Thomas Landauer, Danielle McNamara, Simon Dennis, Walter Kintsch,   (2007) Handbook of Latent Semantic Analysis.  [http://www.amazon.com/Handbook-Semantic-University-Institute-Cognitive-ebook/dp/B00CXU38Z4](http://www.amazon.com/Handbook-Semantic-University-Institute-Cognitive-ebook/dp/B00CXU38Z4)
 
