@@ -1,3 +1,3 @@
 make-enron-corpus     Create a corpus and dtm from the full Enron directory
 make-inboxes-corpus   Create a corpus and dtm from the Enron "inboxes" directory
-make-rdevel-corpus    Create a corpus and from the R-devel 2006 mailing list directory
+make-rdevel-corpus    Create a corpus and dtm from the R-devel 2006 mailing list directory
