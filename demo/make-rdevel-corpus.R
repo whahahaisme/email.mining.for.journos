@@ -10,7 +10,7 @@
 # clean slate
 ls(); rm(list = ls()); gc()
 
-old.mc.cores <- options(mc.cores = 3) # set to 1 for debugging
+old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
 gcinfo(FALSE) # set to TRUE to see impact of low RAM
 
 # libraries needed
@@ -37,11 +37,11 @@ print(date())
 save(rdevel.dtm, file = '/data/rdevel-dtm.rda', compress = 'xz')
 
 # Top 20 Authors
-authors <- lapply(rdevel.corpus, Author)
-authors <- sapply(authors, paste, collapse = " ")
-print(sort(table(authors), decreasing = TRUE)[1:20])
+rdevel.authors <- lapply(rdevel.corpus, Author)
+rdevel.authors <- sapply(rdevel.authors, paste, collapse = " ")
+print(sort(table(rdevel.authors), decreasing = TRUE)[1:20])
 
 # Top 20 Headings
-headings <- lapply(rdevel.corpus, Heading)
-headings <- sapply(headings, paste, collapse = " ")
-print(sort(table(headings), decreasing = TRUE)[1:20])
+rdevel.headings <- lapply(rdevel.corpus, Heading)
+rdevel.headings <- sapply(rdevel.headings, paste, collapse = " ")
+print(sort(table(rdevel.headings), decreasing = TRUE)[1:20])

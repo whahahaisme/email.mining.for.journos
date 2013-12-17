@@ -10,7 +10,7 @@
 # clean slate
 ls(); rm(list = ls()); gc()
 
-old.mc.cores <- options(mc.cores = 3) # set to 1 for debugging
+old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
 gcinfo(FALSE) # set to TRUE to see impact of low RAM
 
 # libraries needed
@@ -37,11 +37,11 @@ print(date())
 save(enron.dtm, file = '/data/enron-dtm.rda', compress = 'xz')
 
 # Top 20 Authors
-authors <- lapply(enron.corpus, Author)
-authors <- sapply(authors, paste, collapse = " ")
-print(sort(table(authors), decreasing = TRUE)[1:20])
+enron.authors <- lapply(enron.corpus, Author)
+enron.authors <- sapply(enron.authors, paste, collapse = " ")
+print(sort(table(enron.authors), decreasing = TRUE)[1:20])
 
 # Top 20 Headings
-headings <- lapply(enron.corpus, Heading)
-headings <- sapply(headings, paste, collapse = " ")
-print(sort(table(headings), decreasing = TRUE)[1:20])
+enron.headings <- lapply(enron.corpus, Heading)
+enron.headings <- sapply(enron.headings, paste, collapse = " ")
+print(sort(table(enron.headings), decreasing = TRUE)[1:20])

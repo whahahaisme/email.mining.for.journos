@@ -10,7 +10,7 @@
 # clean slate
 ls(); rm(list = ls()); gc()
 
-old.mc.cores <- options(mc.cores = 3) # set to 1 for debugging
+old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
 gcinfo(FALSE) # set to TRUE to see impact of low RAM
 
 # libraries needed
@@ -37,11 +37,11 @@ print(date())
 save(inboxes.dtm, file = '/data/inboxes-dtm.rda', compress = 'xz')
 
 # Top 20 Authors
-authors <- lapply(inboxes.corpus, Author)
-authors <- sapply(authors, paste, collapse = " ")
-print(sort(table(authors), decreasing = TRUE)[1:20])
+inboxes.authors <- lapply(inboxes.corpus, Author)
+inboxes.authors <- sapply(inboxes.authors, paste, collapse = " ")
+print(sort(table(inboxes.authors), decreasing = TRUE)[1:20])
 
 # Top 20 Headings
-headings <- lapply(inboxes.corpus, Heading)
-headings <- sapply(headings, paste, collapse = " ")
-print(sort(table(headings), decreasing = TRUE)[1:20])
+inboxes.headings <- lapply(inboxes.corpus, Heading)
+inboxes.headings <- sapply(inboxes.headings, paste, collapse = " ")
+print(sort(table(inboxes.headings), decreasing = TRUE)[1:20])
