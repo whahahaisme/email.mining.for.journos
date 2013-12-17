@@ -184,7 +184,7 @@ type: prompt
 incremental: true
 
 - Explore the text mining algorithms in RcmdrPlugin.temis
-- Add social network analysis via package _snatm_ `r citep(list(bib['Bohn2011'], bib['Bohn2013']))`
+- Add social network analysis via package _snatm_ `r citep(bib['Bohn2011'])`
 - Add functionality to the package with journalism uses in mind
 - Port the Bash and Perl pieces to R so the package will run on Windows
 - ???

@@ -180,7 +180,7 @@ type: prompt
 incremental: true
 
 - Explore the text mining algorithms in RcmdrPlugin.temis
-- Add social network analysis via package _snatm_ (<a href="http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf">Feinerer et al. 2011</a> ; <a href="http://R-Forge.R-project.org/projects/snatm/">Bohn & Feinerer, 2013</a>  )
+- Add social network analysis via package _snatm_ (<a href="http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf">Feinerer et al. 2011</a> )
 - Add functionality to the package with journalism uses in mind
 - Port the Bash and Perl pieces to R so the package will run on Windows
 - ???
@@ -194,7 +194,6 @@ type: prompt
 
 - Ingo Feinerer, Kurt Bohn, Patrick Mair,   (2011) Content-Based Social Network Analysis
 of Mailing Lists.  [http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf](http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf)
-- Angela Bohn, Ingo Feinerer,   (2013) snatm: Combine Social Network Analysis and Text Mining.  [http://R-Forge.R-project.org/projects/snatm/](http://R-Forge.R-project.org/projects/snatm/)
 - Milan Bouchet-Valat, Gilles Bastin,   (2013) RcmdrPlugin.temis, a Graphical Integrated Text Mining Solution in R.  [http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf](http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf)
 - Ingo Feinerer, Kurt Hornik, David Meyer,   (2008) Text Mining Infrastructure in R.  [http://www.jstatsoft.org/v25/i05/](http://www.jstatsoft.org/v25/i05/)
 - John Fox,   (2005) The R Commander: A Basic Statistics Graphical User Interface to R.  [http://www.jstatsoft.org/v14/i09](http://www.jstatsoft.org/v14/i09)
