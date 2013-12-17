@@ -42,7 +42,7 @@ incremental: true
 - Replace variations on a word with its _stem_
 - Most often done using an algorithm called the _Porter Stemmer_
 - You'll also see the term _Snowball_ - that's the implemented version
-  - Example: replace "stem", "stems", stemmer", "stemming", "stemmed" with "stem".
+  - Example: replace "stem", "stems", "stemmer", "stemming", "stemmed" with "stem".
 
 Stopwords
 ========================================================
