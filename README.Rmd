@@ -13,7 +13,7 @@ An R package for email text mining
 
 # Invisible citations here to force a bibliography
 library(knitcitations)
-bib <- read.bibtex("inst/knitcitations.bib")
+bib <- read.bibtex("inst/presos/knitcitations.bib")
 cite(bib["Russell2013"])
 cite(bib["Bouchet-Valat2013"])
 cite(bib["Bohn2011"])
