@@ -8,35 +8,40 @@
 #
 
 # clean slate
-ls()
-rm(list=ls())
-gc()
+ls(); rm(list = ls()); gc()
 
-old.mc.cores <- options(mc.cores = 2) # set to 1 for debugging
-gcinfo(TRUE)
+old.mc.cores <- options(mc.cores = 3) # set to 1 for debugging
+gcinfo(FALSE) # set to TRUE to see impact of low RAM
 
 # libraries needed
 library(email.mining.for.journos)
 library(tm)
 
+# make and save the corpus
 print(date())
 inboxes.corpus <- make.email.corpus('/data/inboxes')
 print(date())
-inboxes.corpus <- clean.email.corpus(inboxes.corpus)
-print(date())
 print(summary(inboxes.corpus))
-save(inboxes.corpus, file='/data/inboxes-corpus.rda', compress='xz')
+save(inboxes.corpus, file = '/data/inboxes-corpus.rda', compress = 'xz')
 
 # now make and save Document-Term Matrix
-inboxes.dtm <- DocumentTermMatrix(inboxes.corpus)
-save(inboxes.dtm, file='/data/inboxes-dtm.rda', compress='xz')
+print(date())
+inboxes.dtm <- DocumentTermMatrix(
+  clean.email.corpus(inboxes.corpus),
+  control = list(
+    tolower = FALSE, 
+    wordLengths = c(3, Inf)
+  )
+)
+print(date())
+save(inboxes.dtm, file = '/data/inboxes-dtm.rda', compress = 'xz')
 
-# Authors
+# Top 20 Authors
 authors <- lapply(inboxes.corpus, Author)
 authors <- sapply(authors, paste, collapse = " ")
 print(sort(table(authors), decreasing = TRUE)[1:20])
 
-# Topics / Headings
+# Top 20 Headings
 headings <- lapply(inboxes.corpus, Heading)
 headings <- sapply(headings, paste, collapse = " ")
 print(sort(table(headings), decreasing = TRUE)[1:20])

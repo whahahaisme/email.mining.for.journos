@@ -8,33 +8,40 @@
 #
 
 # clean slate
-ls()
-rm(list=ls())
-gc()
+ls(); rm(list = ls()); gc()
 
-old.mc.cores <- options(mc.cores = 1) # set to 1 for debugging
-gcinfo(TRUE)
+old.mc.cores <- options(mc.cores = 3) # set to 1 for debugging
+gcinfo(FALSE) # set to TRUE to see impact of low RAM
 
 # libraries needed
 library(email.mining.for.journos)
 library(tm)
 
+# make and save the corpus
 print(date())
 enron.corpus <- make.email.corpus('/data/enron')
 print(date())
 print(summary(enron.corpus))
-save(enron.corpus, file='/data/enron-corpus.rda', compress='xz')
+save(enron.corpus, file = '/data/enron-corpus.rda', compress = 'xz')
 
 # now make and save Document-Term Matrix
-enron.dtm <- DocumentTermMatrix(enron.corpus)
-save(enron.dtm, file='/data/enron-dtm.rda', compress='xz')
+print(date())
+enron.dtm <- DocumentTermMatrix(
+  clean.email.corpus(enron.corpus),
+  control = list(
+    tolower = FALSE, 
+    wordLengths = c(3, Inf)
+  )
+)
+print(date())
+save(enron.dtm, file = '/data/enron-dtm.rda', compress = 'xz')
 
-# Authors
+# Top 20 Authors
 authors <- lapply(enron.corpus, Author)
 authors <- sapply(authors, paste, collapse = " ")
 print(sort(table(authors), decreasing = TRUE)[1:20])
 
-# Topics / Headings
+# Top 20 Headings
 headings <- lapply(enron.corpus, Heading)
 headings <- sapply(headings, paste, collapse = " ")
 print(sort(table(headings), decreasing = TRUE)[1:20])
