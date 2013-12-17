@@ -24,7 +24,7 @@
 #' @importFrom tm stopwords
 #' @param email.corpus an email corpus made via make.email.corpus
 #' @examples
-#' # rdevel.corpus <- clean.email.corpus('/data/rdevel')
+#' # rdevel.corpus <- clean.email.corpus(rdevel.corpus)
 
 clean.email.corpus <- function(email.corpus) {
 

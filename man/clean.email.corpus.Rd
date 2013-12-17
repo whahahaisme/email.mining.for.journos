@@ -13,7 +13,7 @@ clean.email.corpus(email.corpus)
 directory of email message files.
 }
 \examples{
-# rdevel.corpus <- clean.email.corpus('/data/rdevel')
+# rdevel.corpus <- clean.email.corpus(rdevel.corpus)
 }
 \keyword{cleaning}
 \keyword{corpus}
