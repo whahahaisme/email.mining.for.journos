@@ -117,7 +117,8 @@ incremental: true
 - Most text mining algorithms are based on linear algebra / vector spaces
 - Programming language choices
   - R and Python both have good libraries for this
-  - The hard stuff is usually done in C/C++ and called
+  - The hard stuff is usually done via C/C++
+  - A lot of Java code out there too
   
 
 Wait - You Mangled the Documents - How Can This Possibly Work?
@@ -138,6 +139,7 @@ incremental: true
   - A term-document matrix!
   - You'll see both in the literature
   - We'll stick with document-term matrix
+  - That's the way R Commander's text mining code works
 
 Tools - R Commander and RcmdrPlugin.temis
 ========================================================
