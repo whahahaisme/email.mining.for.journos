@@ -6,10 +6,9 @@
 # MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
-#' Make an email corpus using the 'tm' and 'tm.plugin.mail' packages
+#' Clean an email corpus using the 'tm' and 'tm.plugin.webmining' packages
 #'
-#' 'make.email.corpus' makes an email corpus from a flattened directory of
-#' email message files.
+#' 'clean.email.corpus' cleans an email corpus made by 'make.email.corpus.
 #'
 #' @keywords email corpus data cleaning
 #' @export clean.email.corpus

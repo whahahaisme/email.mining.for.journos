@@ -1,6 +1,6 @@
 \name{clean.email.corpus}
 \alias{clean.email.corpus}
-\title{Make an email corpus using the 'tm' and 'tm.plugin.mail' packages}
+\title{Clean an email corpus using the 'tm' and 'tm.plugin.webmining' packages}
 \usage{
 clean.email.corpus(email.corpus)
 }
@@ -9,8 +9,8 @@ clean.email.corpus(email.corpus)
   make.email.corpus}
 }
 \description{
-'make.email.corpus' makes an email corpus from a flattened
-directory of email message files.
+'clean.email.corpus' cleans an email corpus made by
+'make.email.corpus.
 }
 \examples{
 # rdevel.corpus <- clean.email.corpus(rdevel.corpus)

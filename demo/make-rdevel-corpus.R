@@ -16,8 +16,8 @@ old.mc.cores <- options(mc.cores = 2) # set to 1 for debugging
 gcinfo(TRUE)
 
 # libraries needed
-require(email.mining.for.journos)
-require(tm)
+library(email.mining.for.journos)
+library(tm)
 
 print(date())
 rdevel.corpus <- make.email.corpus('/data/rdevel')
