@@ -159,7 +159,7 @@ type: prompt
 incremental: true
 
 
--  <a href="">Bouchet-Valat & Bastin (2013)</a> : adds basic and advanced text mining functions
+-  <a href="http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf">Bouchet-Valat & Bastin (2013)</a> : adds basic and advanced text mining functions
 - Plan of attack
   1. Get some data - 2006 R-devel mailing list, to be precise (<a href="http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf">Feinerer et al. 2011</a> ; <a href="http://www.jstatsoft.org/v25/i05/">Feinerer et al. 2008</a>  )
   2. Unpack to a flat directory - each message is a single file
@@ -189,13 +189,11 @@ incremental: true
 References
 ========================================================
 
-
 - Ingo Feinerer, Kurt Bohn, Patrick Mair,   (2011) Content-Based Social Network Analysis
 of Mailing Lists.  *The R Journal*  **3**  (1)   11-18  [http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf](http://journal.r-project.org/archive/2011-1/RJournal_2011-1_Bohn~et~al.pdf)
 - Angela Bohn, Ingo Feinerer,   (2013) snatm: Combine Social Network Analysis and Text Mining.  [http://R-Forge.R-project.org/projects/snatm/](http://R-Forge.R-project.org/projects/snatm/)
-- Milan Bouchet-Valat, Gilles Bastin,   (2013) RcmdrPlugin.temis: Graphical Integrated Text Mining Solution.
+- Milan Bouchet-Valat, Gilles Bastin,   (2013) RcmdrPlugin.temis, a Graphical Integrated Text Mining Solution in R.  *The R Journal*  **5**  (1)   188-196-NA  [http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf](http://journal.r-project.org/archive/2013-1/bouchetvalat-bastin.pdf)
 - Ingo Feinerer, Kurt Hornik, David Meyer,   (2008) Text Mining Infrastructure in R.  *Journal of Statistical Software*  **25**  (5)   1-54  [http://www.jstatsoft.org/v25/i05/](http://www.jstatsoft.org/v25/i05/)
 - John Fox,   (2005) The R Commander: A Basic Statistics Graphical User Interface to R.  *Journal of Statistical Software*  **14**  (9)   1-42  [http://www.jstatsoft.org/v14/i09](http://www.jstatsoft.org/v14/i09)
 - Thomas Landauer, Danielle McNamara, Simon Dennis, Walter Kintsch,   (2007) Handbook of Latent Semantic Analysis.
-
 

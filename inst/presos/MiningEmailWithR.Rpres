@@ -163,7 +163,7 @@ type: prompt
 incremental: true
 
 
--  `r citet(bib['Bouchet-Valat2013'])`: adds basic and advanced text mining functions
+-  `r citet(bib['Bouchet-Valat2013b'])`: adds basic and advanced text mining functions
 - Plan of attack
   1. Get some data - 2006 R-devel mailing list, to be precise `r citep(list(bib['Bohn2011'], bib['Feinerer2008']))`
   2. Unpack to a flat directory - each message is a single file
@@ -192,8 +192,6 @@ incremental: true
 
 References
 ========================================================
-
-```{r echo=FALSE, results='asis'}
+```{r echo=FALSE, results='asis', size='small'}
 bibliography()
 ```
-
