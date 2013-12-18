@@ -43,10 +43,10 @@ Vcells 277882  2.2     786432  6.0   786409  6.0
 > 
 > # make and save the corpus
 > print(date())
-[1] "Tue Dec 17 02:15:43 2013"
+[1] "Wed Dec 18 01:29:49 2013"
 > rdevel.corpus <- make.email.corpus('/data/rdevel')
 > print(date())
-[1] "Tue Dec 17 02:15:48 2013"
+[1] "Wed Dec 18 01:29:53 2013"
 > print(summary(rdevel.corpus))
 A corpus with 4584 text documents
 
@@ -60,7 +60,7 @@ NULL
 > 
 > # now make and save Document-Term Matrix
 > print(date())
-[1] "Tue Dec 17 02:15:55 2013"
+[1] "Wed Dec 18 01:30:00 2013"
 > rdevel.dtm <- DocumentTermMatrix(
 +   clean.email.corpus(rdevel.corpus),
 +   control = list(
@@ -69,7 +69,7 @@ NULL
 +   )
 + )
 > print(date())
-[1] "Tue Dec 17 02:16:25 2013"
+[1] "Wed Dec 18 01:30:30 2013"
 > save(rdevel.dtm, file = '/data/rdevel-dtm.rda', compress = 'xz')
 > 
 > # Top 20 Authors
@@ -164,5 +164,5 @@ rdevel.headings
                    [Rd] memory issues with new release (PR#9344) 
                                                               14 
 > 
-44.84user 0.46system 0:46.18elapsed 98%CPU (0avgtext+0avgdata 421664maxresident)k
-82560inputs+5784outputs (74major+96460minor)pagefaults 0swaps
+45.10user 0.41system 0:45.65elapsed 99%CPU (0avgtext+0avgdata 423588maxresident)k
+608inputs+5784outputs (1major+93965minor)pagefaults 0swaps

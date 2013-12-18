@@ -43,11 +43,11 @@ Vcells 277882  2.2     786432  6.0   786409  6.0
 > 
 > # make and save the corpus
 > print(date())
-[1] "Tue Dec 17 02:16:30 2013"
+[1] "Wed Dec 18 01:30:35 2013"
 > inboxes.corpus <- make.email.corpus('/data/inboxes')
 There were 50 or more warnings (use warnings() to see the first 50)
 > print(date())
-[1] "Tue Dec 17 02:17:32 2013"
+[1] "Wed Dec 18 01:31:38 2013"
 > print(summary(inboxes.corpus))
 A corpus with 44871 text documents
 
@@ -61,7 +61,7 @@ NULL
 > 
 > # now make and save Document-Term Matrix
 > print(date())
-[1] "Tue Dec 17 02:19:20 2013"
+[1] "Wed Dec 18 01:33:26 2013"
 > inboxes.dtm <- DocumentTermMatrix(
 +   clean.email.corpus(inboxes.corpus),
 +   control = list(
@@ -70,7 +70,7 @@ NULL
 +   )
 + )
 > print(date())
-[1] "Tue Dec 17 02:23:39 2013"
+[1] "Wed Dec 18 01:37:43 2013"
 > save(inboxes.dtm, file = '/data/inboxes-dtm.rda', compress = 'xz')
 > 
 > # Top 20 Authors
@@ -145,5 +145,5 @@ Lexis-Nexis Training: Houston & Worldwide / Dow Jones Training
                                                            Re: 
                                                             46 
 > 
-455.79user 3.76system 7:47.19elapsed 98%CPU (0avgtext+0avgdata 2435280maxresident)k
-595104inputs+53840outputs (0major+544168minor)pagefaults 0swaps
+455.33user 3.71system 7:46.59elapsed 98%CPU (0avgtext+0avgdata 2435084maxresident)k
+595112inputs+53840outputs (0major+545652minor)pagefaults 0swaps

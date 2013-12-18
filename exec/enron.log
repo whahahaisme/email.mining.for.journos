@@ -43,11 +43,11 @@ Vcells 277882  2.2     786432  6.0   786409  6.0
 > 
 > # make and save the corpus
 > print(date())
-[1] "Tue Dec 17 02:24:17 2013"
+[1] "Wed Dec 18 01:38:21 2013"
 > enron.corpus <- make.email.corpus('/data/enron')
 There were 50 or more warnings (use warnings() to see the first 50)
 > print(date())
-[1] "Tue Dec 17 02:36:45 2013"
+[1] "Wed Dec 18 01:51:01 2013"
 > print(summary(enron.corpus))
 A corpus with 517424 text documents
 
@@ -61,7 +61,7 @@ NULL
 > 
 > # now make and save Document-Term Matrix
 > print(date())
-[1] "Tue Dec 17 02:56:49 2013"
+[1] "Wed Dec 18 02:11:01 2013"
 > enron.dtm <- DocumentTermMatrix(
 +   clean.email.corpus(enron.corpus),
 +   control = list(
@@ -70,7 +70,7 @@ NULL
 +   )
 + )
 > print(date())
-[1] "Tue Dec 17 03:48:20 2013"
+[1] "Wed Dec 18 03:00:35 2013"
 > save(enron.dtm, file = '/data/enron-dtm.rda', compress = 'xz')
 > 
 > # Top 20 Authors
@@ -145,5 +145,5 @@ Demand Ken Lay Donate Proceeds from Enron Stock Sales
                                       Congratulations 
                                                   245 
 > 
-5331.86user 38.52system 1:30:55elapsed 98%CPU (0avgtext+0avgdata 19117120maxresident)k
-5624264inputs+583248outputs (0major+5703773minor)pagefaults 0swaps
+5190.88user 39.92system 1:28:58elapsed 97%CPU (0avgtext+0avgdata 19120196maxresident)k
+5624256inputs+583248outputs (0major+5706180minor)pagefaults 0swaps
