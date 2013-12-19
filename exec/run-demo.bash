@@ -14,7 +14,7 @@ iostat -pxc 1 > ${1}.iostat.log &
 vmstat 1 > ${1}.vmstat.log &
 
 # run the demo with performance capture
-/usr/bin/time R --no-save < ../demo/${i}.R 2>&1 | tee ${1}.log
+/usr/bin/time R --no-save < ../demo/${1}.R 2>&1 | tee ${1}.log
 
 # kill monitors
 pkill iostat
