@@ -27,7 +27,6 @@ for (mailbox.name in mailboxes) {
   email.corpus <- corpus.from.eml(mailbox.name)
   meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
   meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name
-  print(summary(email.corpus))
   save.name <- gsub(pattern = '/', replacement = '-', mailbox.name)
   save(
     email.corpus,
