@@ -1,0 +1,39 @@
+library(downloader)
+dir.create(path = '~/Downloads/RMailingLists', recursive = TRUE, mode = '0755')
+here <- setwd('~/Downloads/RMailingLists')
+for (mailing.list in c('r-devel', 'r-help')) {
+  dir.create(path = mailing.list)
+  setwd(mailing.list)
+  where <- paste('https://stat.ethz.ch/pipermail', mailing.list, sep = '/')
+
+  download(
+    url = where,
+    destfile = 'webpage.html',
+    mode = 'wb',
+    extra = '--no-check-certificate'
+  )
+
+  file.names <- sub(
+    'gz.*$',
+    'gz',
+    sub(
+      '^.*href="',
+      '',
+      grep('txt.gz', readLines('webpage.html'), value = TRUE)
+    )
+  )
+
+  for (source.file in file.names) {
+    source.url <- paste(where, source.file, sep = '/')
+    download(
+      url = source.url,
+      destfile = source.file,
+      mode = 'wb',
+      extra = '--no-check-certificate'
+    )
+  }
+  
+  setwd('..')
+}
+
+setwd(here)
