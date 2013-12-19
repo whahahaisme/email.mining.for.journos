@@ -1,5 +1,6 @@
+library(downloader)
 library(email.mining.for.journos)
-dir.create(path = '~/Downloads/RMailingLists', recursive = TRUE, mode = '0755')
+dir.create(path = '~/Downloads/RMailingLists', recursive = TRUE)
 here <- setwd('~/Downloads/RMailingLists')
 for (mailing.list in c('r-devel', 'r-help')) {
   dir.create(path = mailing.list)
