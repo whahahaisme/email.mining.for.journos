@@ -26,6 +26,7 @@ for (mailing.list in c('r-devel', 'r-help')) {
   )
 
   for (source.file in file.names) {
+    print(paste('Processing source file', mailing.list, source.file, sep = ' '))
     source.url <- paste(where, source.file, sep = '/')
     download(
       url = source.url,
