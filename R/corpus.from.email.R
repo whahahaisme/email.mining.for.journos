@@ -21,7 +21,7 @@
 
 corpus.from.eml <- function(directory) {
   email.corpus <- VCorpus(
-    DirSource(directory),
+    DirSource(directory, recursive=TRUE),
     readerControl = list(
       reader = readMail,
       load = TRUE
