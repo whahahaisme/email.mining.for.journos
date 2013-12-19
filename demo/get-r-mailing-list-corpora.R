@@ -32,6 +32,8 @@ for (mailing.list in c('r-devel', 'r-help')) {
       extra = '--no-check-certificate'
     )
     email.corpus <- corpus.from.mbox(source.file)
+    meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
+    meta(email.corpus, tag = 'source.file', type = 'corpus') <- source.file
     save(
       email.corpus,
       file = sub('txt.gz', 'corpus.rda', source.file),
