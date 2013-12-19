@@ -34,7 +34,7 @@ corpus.from.eml <- function(directory) {
 #' 'mbox.to.corpus' makes an email corpus from an 'mbox' file, which may be compressed!
 #'
 #' @keywords email corpus mbox
-#' @export mbox.to.corpus
+#' @export corpus.from.mbox
 #' @importFrom tm.plugin.mail convert_mbox_eml
 #' @param source.file an input file of emails in 'mbox' format, which may be compressed
 #' @examples
