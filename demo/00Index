@@ -1,5 +1,3 @@
 get-r-mailing-list-corpora  Make corpora from compressed R mailing list archives
 get-enron-corpora           Make corpora from Enron tarball
-make-enron-corpus           Create a corpus and dtm from the full Enron directory
-make-inboxes-corpus         Create a corpus and dtm from the Enron "inboxes" directory
 make-rdevel-corpus          Create a corpus and dtm from the R-devel 2006 mailing list directory
