@@ -9,7 +9,7 @@
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 #
 
-for i in rdevel inboxes enron
+for i in get-r-mailing-list-corpora get-enron-corpora
 do
   ./run-demo.bash $i
 done
