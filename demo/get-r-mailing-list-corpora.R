@@ -11,6 +11,7 @@ for (mailing.list in c('r-devel', 'r-help')) {
     url = where,
     destfile = 'webpage.html',
     mode = 'wb',
+    quiet = TRUE,
     extra = '--no-check-certificate'
   )
   file.names <- sub(
@@ -29,6 +30,7 @@ for (mailing.list in c('r-devel', 'r-help')) {
       url = source.url,
       destfile = source.file,
       mode = 'wb',
+      quiet = TRUE,
       extra = '--no-check-certificate'
     )
     email.corpus <- corpus.from.mbox(source.file)

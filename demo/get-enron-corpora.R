@@ -10,6 +10,7 @@ unlink(tarball, force = TRUE)
 download(
   url = tarball.url,
   destfile = tarball,
+  quiet = TRUE,
   mode = 'wb'
 )
 untar(tarball, compressed='gzip')
