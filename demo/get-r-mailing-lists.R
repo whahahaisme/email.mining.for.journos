@@ -1,4 +1,5 @@
 library(downloader)
+library(tm)
 library(tm.plugin.mail)
 dir.create(path = '~/Downloads/RMailingLists', recursive = TRUE, mode = '0755')
 here <- setwd('~/Downloads/RMailingLists')
@@ -34,12 +35,34 @@ for (mailing.list in c('r-devel', 'r-help')) {
       extra = '--no-check-certificate'
     )
 
+    # now make and save a corpus!
+    directory <- sub('.txt.gz', '', source.file, fixed=TRUE)
+
     convert_mbox_eml(
       source.file,
-      sub('.txt.gz', '', source.file, fixed=TRUE)
+      directory
     )
+
+    email.corpus <- VCorpus(
+      DirSource(directory),
+      readerControl = list(
+        reader = readMail,
+        load = TRUE
+      )
+    )
+
+    save(
+      email.corpus,
+      file = paste(
+        directory,
+        '.corpus.rda',
+        sep=''
+      ),
+      compress = 'xz'
+    )
+
   }
-  
+
   setwd('..')
 }
 
