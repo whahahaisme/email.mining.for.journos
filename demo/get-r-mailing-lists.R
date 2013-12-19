@@ -1,4 +1,5 @@
 library(downloader)
+library(tm.plugin.mail)
 dir.create(path = '~/Downloads/RMailingLists', recursive = TRUE, mode = '0755')
 here <- setwd('~/Downloads/RMailingLists')
 for (mailing.list in c('r-devel', 'r-help')) {
@@ -25,11 +26,17 @@ for (mailing.list in c('r-devel', 'r-help')) {
 
   for (source.file in file.names) {
     source.url <- paste(where, source.file, sep = '/')
+
     download(
       url = source.url,
       destfile = source.file,
       mode = 'wb',
       extra = '--no-check-certificate'
+    )
+
+    convert_mbox_eml(
+      source.file,
+      sub('.txt.gz', '', source.file, fixed=TRUE)
     )
   }
   
