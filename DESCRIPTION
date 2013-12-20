@@ -14,3 +14,6 @@ Imports:
     tm.plugin.webmining (>= 0.9)
 License: AGPL-3
 LazyData: true
+VignetteBuilder: knitr
+Suggests:
+    knitr
