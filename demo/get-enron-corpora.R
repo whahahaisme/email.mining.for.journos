@@ -1,3 +1,4 @@
+#' @demoTitle Download Enron corpus tarball and build corpora from the mailboxes
 library(downloader)
 library(email.mining.for.journos)
 library(tm)

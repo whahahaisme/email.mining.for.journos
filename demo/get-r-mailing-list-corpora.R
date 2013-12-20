@@ -1,3 +1,4 @@
+#' @demoTitle Download R-devel and R-help mailing list archives and build corpora
 library(downloader)
 library(email.mining.for.journos)
 library(tm)
