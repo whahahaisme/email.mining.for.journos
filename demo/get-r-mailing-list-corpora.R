@@ -39,10 +39,14 @@ for (mailing.list in c('r-devel', 'r-help')) {
     )
     email.corpus <- corpus.from.mbox(source.file)
     meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
-    meta(email.corpus, tag = 'source.file', type = 'corpus') <- source.file
+    meta(email.corpus, tag = 'source.file', type = 'corpus') <- 
+      paste(mailing.list, source.file, sep = '-')
     save(
       email.corpus,
-      file = sub('txt.gz', 'corpus.rda', source.file),
+      file = paste(
+        mailing.list,
+        sub('txt.gz', 'corpus.rda', source.file),
+        sep = '-'),
       compress = 'xz'
     )
   }
