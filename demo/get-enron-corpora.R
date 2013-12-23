@@ -2,7 +2,10 @@
 library(downloader)
 library(email.mining.for.journos)
 library(tm)
-here <- setwd('~/Downloads')
+destination.directory <- '/data/Enron'
+unlink(destination.directory, recursive = TRUE, force = TRUE)
+dir.create(path = destination.directory, recursive = TRUE)
+here <- setwd(destination.directory)
 directory <- 'enron_mail_20110402'
 tarball <- paste(directory, 'tgz', sep = '.')
 tarball.url <- paste('http://download.srv.cs.cmu.edu/~enron', tarball, sep = '/')
