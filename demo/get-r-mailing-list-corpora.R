@@ -22,7 +22,7 @@ for (mailing.list in c('r-devel', 'r-help')) {
     repacement = 'gz',
     sub(
       pattern = '^.*href="',
-      repacement = '',
+      replacement = '',
       grep(pattern = 'txt.gz', readLines('webpage.html'), value = TRUE)
     )
   )
