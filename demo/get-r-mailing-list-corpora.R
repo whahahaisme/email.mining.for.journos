@@ -19,7 +19,7 @@ for (mailing.list in c('r-devel', 'r-help')) {
   )
   file.names <- sub(
     pattern = 'gz.*$',
-    repacement = 'gz',
+    replacement = 'gz',
     sub(
       pattern = '^.*href="',
       replacement = '',
