@@ -30,8 +30,9 @@ mailboxes <- unique(
 for (mailbox.name in mailboxes) {
   print(paste('Processing mailbox', mailbox.name, sep = ' '))
   email.corpus <- corpus.from.eml(mailbox.name)
-  meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
+  meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
   meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name
+  meta(email.corpus, tag = 'source.url', type = 'corpus') <- tarball.url
   save.name <- gsub(pattern = '/', replacement = '-', mailbox.name)
   save(
     email.corpus,
