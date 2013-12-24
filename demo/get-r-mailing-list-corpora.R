@@ -18,12 +18,12 @@ for (mailing.list in c('r-devel', 'r-help')) {
     extra = '--no-check-certificate'
   )
   file.names <- sub(
-    'gz.*$',
-    'gz',
+    pattern = 'gz.*$',
+    repacement = 'gz',
     sub(
-      '^.*href="',
-      '',
-      grep('txt.gz', readLines('webpage.html'), value = TRUE)
+      pattern = '^.*href="',
+      repacement = '',
+      grep(pattern = 'txt.gz', readLines('webpage.html'), value = TRUE)
     )
   )
 
@@ -38,9 +38,9 @@ for (mailing.list in c('r-devel', 'r-help')) {
       extra = '--no-check-certificate'
     )
     email.corpus <- corpus.from.mbox(source.file)
-    meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
-    meta(email.corpus, tag = 'source.file', type = 'corpus') <- 
-      paste(mailing.list, source.file, sep = '-')
+    meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
+    meta(email.corpus, tag = 'source.url', type = 'corpus') <- 
+      source.url
     month <- sub(
       pattern = '.txt.gz$', replacement = '', 
       sub(pattern = '^.+-', replacement = '', source.file)
