@@ -41,12 +41,18 @@ for (mailing.list in c('r-devel', 'r-help')) {
     meta(email.corpus, tag = 'creator', type = 'corpus') <- '@znmeb'
     meta(email.corpus, tag = 'source.file', type = 'corpus') <- 
       paste(mailing.list, source.file, sep = '-')
+    month <- sub(
+      pattern = '.txt.gz$', replacement = '', 
+      sub(pattern = '^.+-', replacement = '', source.file)
+    )
+    month.number <- sprintf('%02d', which(month.name == month))
+    save.name <- sub(
+      pattern = '.txt.gz$', replacement = '.corpus.rda',
+      sub(pattern = month, replacement = month.number, source.file)
+    )
     save(
       email.corpus,
-      file = paste(
-        mailing.list,
-        sub('txt.gz', 'corpus.rda', source.file),
-        sep = '-'),
+      file = paste(mailing.list, save.name, sep = '-'),
       compress = 'xz'
     )
   }
