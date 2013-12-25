@@ -22,7 +22,7 @@ Download the r-help archive tarballs. 6. Return to the
 original directory.
 }
 \examples{
-# mailing.list.root <-
+# r.mailing.list.root <-
 #   download.r.mailing.list.archives(
 #     destination.directory = '/data/RMailingLists'
 # )
