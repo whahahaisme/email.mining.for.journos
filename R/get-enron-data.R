@@ -48,6 +48,7 @@ download.enron.mailboxes <- function(destination.directory) {
 #'
 #' @keywords email Enron corpus eml
 #' @export corpora.from.enron.mailboxes
+#' @importFrom tm meta
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
 #' @param tarball.url The URL of the Enron tarball. This is inserted into the metadata of the output corpora
 #' @examples
