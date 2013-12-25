@@ -1,5 +1,6 @@
 export(clean.email.corpus)
 export(corpora.from.enron.mailboxes)
+export(corpora.from.r.mailing.list.archives)
 export(corpus.from.eml)
 export(corpus.from.mbox)
 export(download.enron.mailboxes)
