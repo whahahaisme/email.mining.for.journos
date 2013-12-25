@@ -1,6 +1,6 @@
 \name{download.r.mailing.list.archives}
 \alias{download.r.mailing.list.archives}
-\title{Download the r-devel and r-help mailing list archives into a user-specified directory}
+\title{Download 'r-devel' and 'r-help' mailing list archives}
 \usage{
 download.r.mailing.list.archives(destination.directory)
 }
@@ -9,9 +9,10 @@ download.r.mailing.list.archives(destination.directory)
   where you want the downloaded Enron corpus stored}
 }
 \description{
-'download.r.mailing.list.archives' downloads the R mailing
-list archives. The returned function value is the root URL
-for the mailing list archives.
+'download.r.mailing.list.archives' downloads the 'r-devel'
+and 'r-help' mailing list archives to a user-specified
+destination directory. The returned function value is the
+root URL for the mailing list archive index pages.
 }
 \examples{
 # r.mailing.list.root <-
@@ -22,5 +23,6 @@ for the mailing list archives.
 \keyword{corpus}
 \keyword{email}
 \keyword{mbox}
-\keyword{r}
+\keyword{r-devel}
+\keyword{r-help}
 

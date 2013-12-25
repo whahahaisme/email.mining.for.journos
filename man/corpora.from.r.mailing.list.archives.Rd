@@ -22,8 +22,9 @@ acquired via 'download.r.mailing.list.archives'
 #   'https://stat.ethz.ch/pipermail'
 # )
 }
-\keyword{Enron}
 \keyword{corpus}
 \keyword{email}
-\keyword{eml}
+\keyword{mbox}
+\keyword{r-devel}
+\keyword{r-help}
 

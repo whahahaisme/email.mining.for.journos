@@ -1,9 +1,10 @@
-#' Download the r-devel and r-help mailing list archives into a user-specified directory
+#' Download 'r-devel' and 'r-help' mailing list archives
 #'
-#' 'download.r.mailing.list.archives' downloads the R mailing list archives. The returned 
-#' function value is the root URL for the mailing list archives.
+#' 'download.r.mailing.list.archives' downloads the 'r-devel' and 'r-help'
+#' mailing list archives to a user-specified destination directory. The returned 
+#' function value is the root URL for the mailing list archive index pages.
 #' 
-#' @keywords email r corpus mbox
+#' @keywords email r-devel r-help corpus mbox
 #' @export download.r.mailing.list.archives
 #' @importFrom downloader download
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
@@ -69,9 +70,11 @@ download.r.mailing.list.archives <- function(destination.directory) {
 
 #' Make corpora from the R mailing list archives
 #'
-#' 'corpora.from.r.mailing.list.archives' makes corpora, one per month of archived data, from the mailboxes archives acquired via 'download.r.mailing.list.archives'
+#' 'corpora.from.r.mailing.list.archives' makes corpora, one per month of 
+#' archived data, from the mailboxes archives acquired via 
+#' 'download.r.mailing.list.archives'
 #'
-#' @keywords email Enron corpus eml
+#' @keywords email r-devel r-help corpus mbox
 #' @export corpora.from.r.mailing.list.archives
 #' @importFrom tm meta
 #' @importFrom tm meta<-
