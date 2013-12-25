@@ -35,6 +35,8 @@ download.r.mailing.list.archives <- function(destination.directory) {
     dir.create(path = mailing.list)
     setwd(mailing.list)
     where <- paste(r.mailing.list.root, mailing.list, sep = '/')
+
+    # get the index page
     download(
       url = where,
       destfile = 'webpage.html',
@@ -42,15 +44,15 @@ download.r.mailing.list.archives <- function(destination.directory) {
       quiet = TRUE,
       extra = '--no-check-certificate'
     )
-    file.names <- sub(
-      pattern = 'gz.*$',
-      replacement = 'gz',
-      sub(
-        pattern = '^.*href="',
-        replacement = '',
-        grep(pattern = 'txt.gz', readLines('webpage.html'), value = TRUE)
-      )
+    
+    # parse out the file names
+    file.names <- grep(
+      pattern = 'txt.gz',
+      readLines('webpage.html'),
+      value = TRUE
     )
+    file.names <- sub(pattern = 'gz.*$', replacement = 'gz', file.names)
+    file.names <- sub(pattern = '^.*href="', replacement = '', file.names)
 
     for (source.file in file.names) {
 
