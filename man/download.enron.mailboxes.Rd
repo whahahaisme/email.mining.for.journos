@@ -20,7 +20,7 @@ directory. 4. Download the tarball. 5. Unpack the tarball.
 6. Return to the original directory.
 }
 \examples{
-# enron.tarball.url <- download.enron.mailboxes('/data/Enron')
+# enron.tarball.url <- download.enron.mailboxes(destination.directory = '/data/Enron')
 }
 \keyword{Enron}
 \keyword{corpus}
