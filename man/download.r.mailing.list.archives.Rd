@@ -11,15 +11,7 @@ download.r.mailing.list.archives(destination.directory)
 \description{
 'download.r.mailing.list.archives' downloads the R mailing
 list archives. The returned function value is the root URL
-for the mailing list archives. The sequence of operations
-is
-}
-\details{
-1. Remove the destination directory. 2. Create an empty
-destination directory. 3. Change into the destination
-directory. 4. Download the r-devel archive tarballs. 5.
-Download the r-help archive tarballs. 6. Return to the
-original directory.
+for the mailing list archives.
 }
 \examples{
 # r.mailing.list.root <-

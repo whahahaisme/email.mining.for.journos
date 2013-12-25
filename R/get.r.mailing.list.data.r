@@ -1,15 +1,8 @@
 #' Download the r-devel and r-help mailing list archives into a user-specified directory
 #'
 #' 'download.r.mailing.list.archives' downloads the R mailing list archives. The returned 
-#' function value is the root URL for the mailing list archives. The sequence of operations is
+#' function value is the root URL for the mailing list archives.
 #' 
-#' 1. Remove the destination directory.
-#' 2. Create an empty destination directory.
-#' 3. Change into the destination directory.
-#' 4. Download the r-devel archive tarballs.
-#' 5. Download the r-help archive tarballs.
-#' 6. Return to the original directory.
-#'
 #' @keywords email r corpus mbox
 #' @export download.r.mailing.list.archives
 #' @importFrom downloader download
