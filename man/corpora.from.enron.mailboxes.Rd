@@ -7,6 +7,9 @@ corpora.from.enron.mailboxes(destination.directory, tarball.url)
 \arguments{
   \item{destination.directory}{absolute path to a directory
   where you want the downloaded Enron corpus stored}
+
+  \item{tarball.url}{The URL of the Enron tarball. This is
+  inserted into the metadata of the output corpora}
 }
 \description{
 'corpora.from.enron.mailboxes' makes corpora, one per
