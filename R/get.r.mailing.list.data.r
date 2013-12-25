@@ -1,7 +1,8 @@
 #' Download 'r-devel' and 'r-help' mailing list archives
 #'
 #' 'download.r.mailing.list.archives' downloads the 'r-devel' and 'r-help'
-#' mailing list archives to a user-specified destination directory.
+#' mailing list archives to a user-specified directory. If the destination
+#' directory exists, it is deleted and re-created.
 #' 
 #' @keywords email r-devel r-help corpus mbox
 #' @export download.r.mailing.list.archives
@@ -16,11 +17,13 @@ download.r.mailing.list.archives <- function(destination.directory) {
   here <- .to.newdir(destination.directory)
 
   for (mailing.list in c('r-devel', 'r-help')) {
+
+    # make a sub-directory for the mailing list
     dir.create(path = mailing.list)
     setwd(mailing.list)
-    where <- paste(.r.mailing.list.root(), mailing.list, sep = '/')
 
     # get the index page
+    where <- paste(.r.mailing.list.root(), mailing.list, sep = '/')
     download(
       url = where,
       destfile = 'index.html',
@@ -30,14 +33,11 @@ download.r.mailing.list.archives <- function(destination.directory) {
     )
     
     # parse out the file names
-    file.names <- grep(
-      pattern = 'txt.gz',
-      readLines('index.html'),
-      value = TRUE
-    )
+    file.names <- grep(pattern = 'txt.gz', readLines('index.html'), value = TRUE)
     file.names <- sub(pattern = 'gz.*$', replacement = 'gz', file.names)
     file.names <- sub(pattern = '^.*href="', replacement = '', file.names)
 
+    # download the archive files
     for (source.file in file.names) {
       print(paste('Downloading', mailing.list, source.file))
       source.url <- paste(where, source.file, sep = '/')
@@ -50,6 +50,7 @@ download.r.mailing.list.archives <- function(destination.directory) {
       )
     }
 
+    # go back up one level
     setwd('..')
   }
 
@@ -84,6 +85,7 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
     file.names <- list.files(full.names=FALSE, recursive=FALSE)
     file.names <- grep(pattern = '.txt.gz$', file.names, value=TRUE)
     
+    # make and tag corpora
     for (source.file in file.names) {
 
       # make and tag corpus
@@ -99,11 +101,7 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
       month <- sub(pattern = '.txt.gz$', replacement = '', source.file)
       month <- sub(pattern = '^.+-', replacement = '', month)
       month.number <- sprintf('%02d', which(month.name == month))
-      save.name <- sub(
-        pattern = '.txt.gz$',
-        replacement = '.corpus.rda',
-        source.file
-      )
+      save.name <- sub(pattern = '.txt.gz$', replacement = '.corpus.rda', source.file)
       save.name <- sub(pattern = month, replacement = month.number, save.name)
       save.name <- paste(mailing.list, save.name, sep = '-')
       save(email.corpus, file = save.name, compress = 'xz')

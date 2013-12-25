@@ -1,19 +1,13 @@
-#' Download and unpack the Enron corpus tarball into a user-specified directory
+#' Download and unpack the Enron corpus tarball
 #'
-#' 'download.enron.mailboxes' downloads and unpacks the Enron corpus tarball. The returned 
-#' function value is the URL from whence the tarball came. The sequence of operations is
-#' 
-#' 1. Remove the destination directory.
-#' 2. Create an empty destination directory.
-#' 3. Change into the destination directory.
-#' 4. Download the tarball.
-#' 5. Unpack the tarball.
-#' 6. Return to the original directory.
+#' 'download.enron.mailboxes' downloads and unpacks the Enron corpus tarball
+#' to a user-specified directory. If the destination directory exists,
+#' it is deleted and re-created.
 #'
 #' @keywords email Enron corpus eml
 #' @export download.enron.mailboxes
 #' @importFrom downloader download
-#' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
+#' @param destination.directory absolute path to a directory where you want the downloaded Enron data stored
 #' @examples
 #' # download.enron.mailboxes(destination.directory = '/data/Enron')
 
@@ -29,7 +23,8 @@ download.enron.mailboxes <- function(destination.directory) {
     quiet = TRUE,
     mode = 'wb'
   ))
-  print(paste('Download time', download.time))
+  print('Download time:')
+  print(download.time)
   print(paste('Unpacking', tarball))
   untar(tarball, compressed='gzip')
   print(paste('Returning to', here))
@@ -46,9 +41,7 @@ download.enron.mailboxes <- function(destination.directory) {
 #' @importFrom tm meta<-
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
 #' @examples
-#' # corpora.from.enron.mailboxes(
-#' #   destination.directory = '/data/Enron'
-#' # )
+#' # corpora.from.enron.mailboxes(destination.directory = '/data/Enron')
 
 corpora.from.enron.mailboxes <- function(destination.directory) {
   here <- setwd(
@@ -56,11 +49,13 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
   )
   print(paste('Left', here, 'for', getwd()))
   
+  # regular expression shenanigans to get the mailbox paths
   mailboxes <- list.files(full.names=FALSE, recursive=TRUE)
   mailboxes <- grep(pattern = '.', mailboxes, fixed=TRUE, value=TRUE)
   mailboxes <- sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '', mailboxes)
   mailboxes <- unique(mailboxes)
 
+  # now make corpora from the mailboxes
   for (mailbox.name in mailboxes) {
 
     # make and tag corpus
