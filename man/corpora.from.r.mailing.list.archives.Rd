@@ -13,8 +13,8 @@ corpora.from.r.mailing.list.archives(destination.directory, r.mailing.list.root)
 }
 \description{
 'corpora.from.r.mailing.list.archives' makes corpora, one
-per month of archived data, from the mailboxes archives
-acquired via 'download.r.mailing.list.archives'
+per month of archived data, from the archives acquired via
+'download.r.mailing.list.archives'.
 }
 \examples{
 # corpora.from.r.mailing.list.archives(

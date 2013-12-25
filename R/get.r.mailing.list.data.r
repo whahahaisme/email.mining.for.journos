@@ -71,8 +71,8 @@ download.r.mailing.list.archives <- function(destination.directory) {
 #' Make corpora from the R mailing list archives
 #'
 #' 'corpora.from.r.mailing.list.archives' makes corpora, one per month of 
-#' archived data, from the mailboxes archives acquired via 
-#' 'download.r.mailing.list.archives'
+#' archived data, from the archives acquired via
+#' 'download.r.mailing.list.archives'.
 #'
 #' @keywords email r-devel r-help corpus mbox
 #' @export corpora.from.r.mailing.list.archives
@@ -95,8 +95,8 @@ corpora.from.r.mailing.list.archives <- function(destination.directory, r.mailin
     
     # get the archive file names
     file.names <- list.files(full.names=FALSE, recursive=FALSE)
-    file.names <- grep(pattern = '.tar.gz$', file.names, value=TRUE)
-
+    file.names <- grep(pattern = '.txt.gz$', file.names, value=TRUE)
+    
     for (source.file in file.names) {
 
       print(paste('Processing archive', mailing.list, source.file))
