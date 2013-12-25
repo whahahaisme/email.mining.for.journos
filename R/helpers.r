@@ -12,3 +12,7 @@
 .r.mailing.list.root <- function() {
   return('https://stat.ethz.ch/pipermail')
 }
+
+.enron.tarball.url <- function() {
+  return('http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz')
+}
