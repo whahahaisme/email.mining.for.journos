@@ -6,10 +6,17 @@
 # MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
 # AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
 
-#' Download and unpack the Enron corpus tarball
+#' Download and unpack the Enron corpus tarball into a user-specified directory
 #'
 #' 'download.enron.mailboxes' downloads and unpacks the Enron corpus tarball. The returned 
-#' function value is the URL from whence the tarball came.
+#' function value is the URL from whence the tarball came. The sequence of operations is
+#' 
+#' 1. Remove the destination directory.
+#' 2. Create an empty destination directory.
+#' 3. Change into the destination directory.
+#' 4. Download the tarball.
+#' 5. Unpack the tarball.
+#' 6. Return to the original directory.
 #'
 #' @keywords email Enron corpus eml
 #' @export download.enron.mailboxes
@@ -19,9 +26,15 @@
 #' # enron.tarball.url <- download.enron.mailboxes('/data/Enron')
 
 download.enron.mailboxes <- function(destination.directory) {
+
+  print(paste('Removing', destination.directory))
   unlink(destination.directory, recursive = TRUE, force = TRUE)
+
+  print(paste('Creating', destination.directory))
   dir.create(path = destination.directory, recursive = TRUE)
   here <- setwd(destination.directory)
+  print(paste('Left', here, 'for', getwd()))
+
   directory <- 'enron_mail_20110402'
   tarball <- paste(directory, 'tgz', sep = '.')
   tarball.url <- paste(
@@ -29,14 +42,16 @@ download.enron.mailboxes <- function(destination.directory) {
     tarball,
     sep = '/'
   )
-  unlink(directory, recursive = TRUE, force = TRUE)
-  unlink(tarball, force = TRUE)
+
+  print(paste('Downloading', tarball.url))
   download(
     url = tarball.url,
     destfile = tarball,
     quiet = TRUE,
     mode = 'wb'
   )
+
+  print(paste('Unpacking', tarball))
   untar(tarball, compressed='gzip')
   setwd(here)
   return(tarball.url)
@@ -86,5 +101,6 @@ corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
       compress = 'xz'
     )
   }
+  print(paste('Returning to', here))
   setwd(here)
 }
