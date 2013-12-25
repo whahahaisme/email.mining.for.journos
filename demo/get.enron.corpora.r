@@ -1,6 +1,8 @@
-#' @demoTitle Download Enron corpus tarball and build corpora from the mailboxes
+#' @demoTitle Download Enron corpus tarball & build corpora from mailboxes
 library(email.mining.for.journos)
-enron.tarball.url <- download.enron.mailboxes(destination.directory = '/data/Enron')
+enron.tarball.url <- download.enron.mailboxes(
+  destination.directory = '/data/Enron'
+)
 corpora.from.enron.mailboxes(
   destination.directory = '/data/Enron',
   tarball.url = enron.tarball.url
