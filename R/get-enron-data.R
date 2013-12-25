@@ -53,6 +53,7 @@ download.enron.mailboxes <- function(destination.directory) {
 
   print(paste('Unpacking', tarball))
   untar(tarball, compressed='gzip')
+  print(paste('Returning to', here))
   setwd(here)
   return(tarball.url)
 }
@@ -67,7 +68,10 @@ download.enron.mailboxes <- function(destination.directory) {
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
 #' @param tarball.url The URL of the Enron tarball. This is inserted into the metadata of the output corpora
 #' @examples
-#' # enron.tarball.url <- download.enron.mailboxes('/data/Enron')
+#' # corpora.from.enron.mailboxes(
+#' #   '/data/Enron',
+#' #   'http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz'
+#' # )
 
 corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
   here <- setwd(
@@ -78,6 +82,8 @@ corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
        sep = '/'
     )
   )
+  print(paste('Left', here, 'for', getwd()))
+  
   mailboxes <- unique(
     sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '',
       grep(pattern = '.',
@@ -89,7 +95,7 @@ corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
   )
 
   for (mailbox.name in mailboxes) {
-    print(paste('Processing mailbox', mailbox.name, sep = ' '))
+    print(paste('Processing mailbox', mailbox.name))
     email.corpus <- corpus.from.eml(mailbox.name, '%a, %d %b %Y %X %z')
     meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
     meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name

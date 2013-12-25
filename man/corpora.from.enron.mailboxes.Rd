@@ -17,7 +17,10 @@ mailbox, from the mailboxes acquired via
 'download.enron.mailboxes'
 }
 \examples{
-# enron.tarball.url <- download.enron.mailboxes('/data/Enron')
+# corpora.from.enron.mailboxes(
+#   '/data/Enron',
+#   'http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz'
+# )
 }
 \keyword{Enron}
 \keyword{corpus}
