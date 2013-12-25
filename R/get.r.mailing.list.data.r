@@ -103,7 +103,7 @@ corpora.from.r.mailing.list.archives <- function(destination.directory, r.mailin
 
     for (source.file in file.names) {
 
-      print(paste('Processing archive', mailing.list, archive))
+      print(paste('Processing archive', mailing.list, source.file))
       email.corpus <- corpus.from.mbox(
         source.file = source.file,
         datestampformat = '%a, %d %b %Y %X %z'
