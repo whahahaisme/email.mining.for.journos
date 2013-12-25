@@ -24,7 +24,7 @@ download.enron.mailboxes <- function(destination.directory) {
   tarball <- basename(.enron.tarball.url())
   print(paste('Downloading', .enron.tarball.url()))
   download.time <- system.time(download(
-    url = enron.tarball.url,
+    url = .enron.tarball.url(),
     destfile = tarball,
     quiet = TRUE,
     mode = 'wb'
