@@ -16,14 +16,18 @@
 #' @importFrom tm DirSource
 #' @importFrom tm.plugin.mail readMail
 #' @param directory absolute path to a directory containing email messages, one per file, aka 'eml format'
+#' @param datestampformat format to use parsing message time stamps
 #' @examples
-#' # email.corpus <- corpus.from.eml('/data/rdevel')
+#' # email.corpus <- corpus.from.eml(
+#' #   directory = '/data/Enron/enron_mail_20110402/maildir/dasovich-j/all_documents',
+#' #   datestampformat = %a, %d %b %Y %X %z'
+#' # )
 
-corpus.from.eml <- function(directory) {
+corpus.from.eml <- function(directory, datestampformat) {
   email.corpus <- VCorpus(
     DirSource(directory, recursive=TRUE),
     readerControl = list(
-      reader = readMail(DateFormat = '%a, %d %b %Y %X %z'),
+      reader = readMail(DateFormat = datestampformat),
       load = TRUE
     )
   )
@@ -37,13 +41,17 @@ corpus.from.eml <- function(directory) {
 #' @export corpus.from.mbox
 #' @importFrom tm.plugin.mail convert_mbox_eml
 #' @param source.file an input file of emails in 'mbox' format, which may be compressed
+#' @param datestampformat format to use parsing message time stamps
 #' @examples
-#' # email.corpus <- corpus.from.mbox('2013-December.txt.gz')
+#' # email.corpus <- corpus.from.mbox(
+#' #   source.file = '2013-December.txt.gz',
+#' #   datestampformat = %a, %d %b %Y %X %z'
+#' # )
 
-corpus.from.mbox <- function(source.file) {
+corpus.from.mbox <- function(source.file, datestampformat) {
   workdir <- tempdir()
   convert_mbox_eml(source.file, workdir)
-  email.corpus <- corpus.from.eml(workdir)
+  email.corpus <- corpus.from.eml(workdir, datestampformat)
   unlink(workdir, recursive=TRUE, force=TRUE)
   return(email.corpus)
 }
