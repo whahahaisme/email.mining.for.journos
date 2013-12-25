@@ -47,8 +47,7 @@ download.enron.mailboxes <- function(destination.directory) {
 #' 'corpora.from.enron.mailboxes' makes corpora, one per mailbox, from the mailboxes acquired via 'download.enron.mailboxes'
 #'
 #' @keywords email Enron corpus eml
-#' @export download.enron.mailboxes
-#' @importFrom downloader download
+#' @export corpora.from.enron.mailboxes
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
 #' @examples
 #' # enron.tarball.url <- download.enron.mailboxes('/data/Enron')
