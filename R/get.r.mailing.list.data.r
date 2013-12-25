@@ -71,6 +71,7 @@ download.r.mailing.list.archives <- function(destination.directory) {
         quiet = TRUE,
         extra = '--no-check-certificate'
       )
+    }
   }
   setwd('..')
 
