@@ -11,13 +11,11 @@ download.r.mailing.list.archives(destination.directory)
 \description{
 'download.r.mailing.list.archives' downloads the 'r-devel'
 and 'r-help' mailing list archives to a user-specified
-destination directory. The returned function value is the
-root URL for the mailing list archive index pages.
+destination directory.
 }
 \examples{
-# r.mailing.list.root <-
-#   download.r.mailing.list.archives(
-#     destination.directory = '/data/RMailingLists'
+# download.r.mailing.list.archives(
+#   destination.directory = '/data/RMailingLists'
 # )
 }
 \keyword{corpus}

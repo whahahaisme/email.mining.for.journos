@@ -19,35 +19,30 @@
 
 download.enron.mailboxes <- function(destination.directory) {
 
-  print(paste('Removing', destination.directory))
-  unlink(destination.directory, recursive = TRUE, force = TRUE)
-
-  print(paste('Creating', destination.directory))
-  dir.create(path = destination.directory, recursive = TRUE)
-  here <- setwd(destination.directory)
-  print(paste('Left', here, 'for', getwd()))
+  here <- .to.newdir(destination.directory)
 
   directory <- 'enron_mail_20110402'
   tarball <- paste(directory, 'tgz', sep = '.')
-  tarball.url <- paste(
+  enron.tarball.url <- paste(
     'http://download.srv.cs.cmu.edu/~enron',
     tarball,
     sep = '/'
   )
 
-  print(paste('Downloading', tarball.url))
-  download(
-    url = tarball.url,
+  print(paste('Downloading', enron.tarball.url))
+  download.time <- system.time(download(
+    url = enron.tarball.url,
     destfile = tarball,
     quiet = TRUE,
     mode = 'wb'
-  )
+  ))
+  print(paste('Download time', download.time))
 
   print(paste('Unpacking', tarball))
   untar(tarball, compressed='gzip')
   print(paste('Returning to', here))
   setwd(here)
-  return(tarball.url)
+  return(enron.tarball.url)
 }
 
 #' Make corpora from the Enron mailboxes
@@ -59,39 +54,30 @@ download.enron.mailboxes <- function(destination.directory) {
 #' @importFrom tm meta
 #' @importFrom tm meta<-
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
-#' @param tarball.url The URL of the Enron tarball. This is inserted into the metadata of the output corpora
+#' @param enron.tarball.url The URL of the Enron tarball. This is inserted into the metadata of the output corpora
 #' @examples
 #' # corpora.from.enron.mailboxes(
 #' #   '/data/Enron',
 #' #   'http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz'
 #' # )
 
-corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
+corpora.from.enron.mailboxes <- function(destination.directory, enron.tarball.url) {
   here <- setwd(
-    paste(
-      destination.directory,
-      'enron_mail_20110402',
-      'maildir',
-       sep = '/'
-    )
+    paste(destination.directory, 'enron_mail_20110402', 'maildir', sep = '/')
   )
   print(paste('Left', here, 'for', getwd()))
   
-  mailboxes <- unique(
-    sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '',
-      grep(pattern = '.',
-        list.files(full.names=FALSE, recursive=TRUE),
-        fixed=TRUE,
-        value=TRUE
-      )
-    )
-  )
+  mailboxes <- list.files(full.names=FALSE, recursive=TRUE)
+  mailboxes <- grep(pattern = '.', mailboxes, fixed=TRUE, value=TRUE)
+  mailboxes <- sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '', mailboxes)
+  mailboxes <- unique(mailboxes)
 
   for (mailbox.name in mailboxes) {
     email.corpus <- corpus.from.eml(mailbox.name, '%a, %d %b %Y %X %z')
     meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
     meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name
-    meta(email.corpus, tag = 'source.url', type = 'corpus') <- tarball.url
+    meta(email.corpus, tag = 'source.url', type = 'corpus') <- enron.tarball.url
+
     save.name <- gsub(pattern = '/', replacement = '-', mailbox.name)
     save.name <- paste(save.name, 'corpus.rda', sep = '.')
     save(
@@ -99,15 +85,7 @@ corpora.from.enron.mailboxes <- function(destination.directory, tarball.url) {
       file = save.name,
       compress = 'xz'
     )
-    print(paste('Processing mailbox', mailbox.name))
-    print(
-      paste(
-        'Made corpus',
-        save.name,
-        'from mailbox',
-        mailbox.name
-      )
-    )
+    print(paste('Made corpus', save.name, 'from mailbox', mailbox.name))
   }
   print(paste('Returning to', here))
   setwd(here)
