@@ -99,7 +99,6 @@ corpora.from.r.mailing.list.archives <- function(destination.directory, r.mailin
     
     for (source.file in file.names) {
 
-      print(paste('Processing archive', mailing.list, source.file))
       email.corpus <- corpus.from.mbox(
         source.file = source.file,
         datestampformat = '%a, %d %b %Y %X %z'
@@ -120,11 +119,19 @@ corpora.from.r.mailing.list.archives <- function(destination.directory, r.mailin
       )
       save.name <- sub(pattern = month, replacement = month.number, save.name)
       save.name <- paste(mailing.list, save.name, sep = '-')
-      print(paste('Saving corpus', save.name))
       save(
         email.corpus,
         file = save.name,
         compress = 'xz'
+      )
+      print(
+        paste(
+          'Made corpus',
+          save.name,
+          'from archive',
+          mailing.list,
+          source.file
+        )
       )
     }
     setwd('..')
