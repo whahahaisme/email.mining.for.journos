@@ -14,9 +14,7 @@ mailbox, from the mailboxes acquired via
 'download.enron.mailboxes'
 }
 \examples{
-# corpora.from.enron.mailboxes(
-#   destination.directory = '/data/Enron'
-# )
+# corpora.from.enron.mailboxes(destination.directory = '/data/Enron')
 }
 \keyword{Enron}
 \keyword{corpus}

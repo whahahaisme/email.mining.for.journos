@@ -1,23 +1,17 @@
 \name{download.enron.mailboxes}
 \alias{download.enron.mailboxes}
-\title{Download and unpack the Enron corpus tarball into a user-specified directory}
+\title{Download and unpack the Enron corpus tarball}
 \usage{
 download.enron.mailboxes(destination.directory)
 }
 \arguments{
   \item{destination.directory}{absolute path to a directory
-  where you want the downloaded Enron corpus stored}
+  where you want the downloaded Enron data stored}
 }
 \description{
 'download.enron.mailboxes' downloads and unpacks the Enron
-corpus tarball. The returned function value is the URL from
-whence the tarball came. The sequence of operations is
-}
-\details{
-1. Remove the destination directory. 2. Create an empty
-destination directory. 3. Change into the destination
-directory. 4. Download the tarball. 5. Unpack the tarball.
-6. Return to the original directory.
+corpus tarball to a user-specified directory. If the
+destination directory exists, it is deleted and re-created.
 }
 \examples{
 # download.enron.mailboxes(destination.directory = '/data/Enron')

@@ -11,7 +11,8 @@ download.r.mailing.list.archives(destination.directory)
 \description{
 'download.r.mailing.list.archives' downloads the 'r-devel'
 and 'r-help' mailing list archives to a user-specified
-destination directory.
+directory. If the destination directory exists, it is
+deleted and re-created.
 }
 \examples{
 # download.r.mailing.list.archives(
