@@ -16,3 +16,11 @@
 .enron.tarball.url <- function() {
   return('http://download.srv.cs.cmu.edu/~enron/enron_mail_20110402.tgz')
 }
+
+.r.mailing.list.date.stamp.format <- function() {
+  return('%a, %d %b %Y %X %z')
+}
+
+.enron.date.stamp.format <- function() {
+  return('%a, %d %b %Y %X %z')
+}

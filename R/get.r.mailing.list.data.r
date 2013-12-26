@@ -91,7 +91,7 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
       # make and tag corpus
       email.corpus <- corpus.from.mbox(
         source.file = source.file,
-        datestampformat = '%a, %d %b %Y %X %z'
+        datestampformat = .r.mailing.list.date.stamp.format()
       )  
       meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
       meta(email.corpus, tag = 'source.url', type = 'corpus') <- 

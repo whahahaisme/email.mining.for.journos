@@ -59,7 +59,7 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
   for (mailbox.name in mailboxes) {
 
     # make and tag corpus
-    email.corpus <- corpus.from.eml(mailbox.name, '%a, %d %b %Y %X %z')
+    email.corpus <- corpus.from.eml(mailbox.name, .enron.date.stamp.format())
     meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
     meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name
     meta(email.corpus, tag = 'source.url', type = 'corpus') <- .enron.tarball.url()
