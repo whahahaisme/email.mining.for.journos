@@ -51,7 +51,7 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
   
   # regular expression shenanigans to get the mailbox paths
   mailboxes <- list.files(full.names=FALSE, recursive=TRUE)
-  mailboxes <- grep(pattern = '.', mailboxes, fixed=TRUE, value=TRUE)
+  mailboxes <- grep(pattern = '\\/[1-9][0-9]*\\.$', mailboxes, fixed=TRUE, value=TRUE)
   mailboxes <- sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '', mailboxes)
   mailboxes <- unique(mailboxes)
 
