@@ -54,7 +54,6 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
   mailboxes <- grep(pattern = '\\/[1-9][0-9]*\\.$', mailboxes, value = TRUE)
   mailboxes <- sub(pattern = '\\/[1-9][0-9]*\\.$', replacement = '', mailboxes)
   mailboxes <- unique(mailboxes)
-  print(mailboxes)
 
   # now make corpora from the mailboxes
   for (mailbox.name in mailboxes) {
