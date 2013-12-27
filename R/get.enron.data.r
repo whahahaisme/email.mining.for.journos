@@ -43,7 +43,7 @@ download.enron.mailboxes <- function(destination.directory) {
 #' @examples
 #' # corpora.from.enron.mailboxes(destination.directory = '/data/Enron')
 
-corpora.from.enron.mailboxes <- function(destination.directory) {
+corpora.from.enron.mailboxes <- function(destination.directory, creator) {
   here <- setwd(
     paste(destination.directory, 'enron_mail_20110402/maildir', sep = '/')
   )
@@ -60,7 +60,7 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
 
     # make and tag corpus
     email.corpus <- corpus.from.eml(mailbox.name, .enron.date.stamp.format())
-    meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
+    meta(email.corpus, tag = 'creator', type = 'corpus') <- creator
     meta(email.corpus, tag = 'mailbox.name', type = 'corpus') <- mailbox.name
     meta(email.corpus, tag = 'source.url', type = 'corpus') <- .enron.tarball.url()
 

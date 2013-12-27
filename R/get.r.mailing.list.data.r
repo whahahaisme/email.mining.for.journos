@@ -74,7 +74,7 @@ download.r.mailing.list.archives <- function(destination.directory) {
 #' #   destination.directory = '/data/RMailingLists'
 #' # )
 
-corpora.from.r.mailing.list.archives <- function(destination.directory) {
+corpora.from.r.mailing.list.archives <- function(destination.directory, creator) {
   here <- setwd(destination.directory)
   print(paste('Left', here, 'for', getwd()))
 
@@ -93,7 +93,7 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
         source.file = source.file,
         datestampformat = .r.mailing.list.date.stamp.format()
       )  
-      meta(email.corpus, tag = 'creator', type = 'corpus') <- 'znmeb@znmeb.net'
+      meta(email.corpus, tag = 'creator', type = 'corpus') <- creator
       meta(email.corpus, tag = 'source.url', type = 'corpus') <- 
         paste(.r.mailing.list.root(), mailing.list, source.file, sep = '/') 
 
