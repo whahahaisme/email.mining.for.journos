@@ -97,18 +97,16 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
       meta(email.corpus, tag = 'source.url', type = 'corpus') <- 
         paste(.r.mailing.list.root(), mailing.list, source.file, sep = '/') 
 
-      # compute save file name
+      # compute source name
       month <- sub(pattern = '.txt.gz$', replacement = '', source.file)
       month <- sub(pattern = '^.+-', replacement = '', month)
       month.number <- sprintf('%02d', which(month.name == month))
-      save.name <- sub(pattern = '.txt.gz$', replacement = '.corpus.rda', source.file)
-      save.name <- sub(pattern = month, replacement = month.number, save.name)
-      save.name <- paste(mailing.list, save.name, sep = '.')
-      save.name <- gsub(pattern = '-', replacement = '.', save.name)
-      save(email.corpus, file = save.name, compress = 'xz')
-      print(
-        paste('Made corpus', save.name, 'from archive', mailing.list, source.file)
-      )
+      source.name <- sub(pattern = month, replacement = month.number, source.file)
+      source.name <- sub(pattern = '.txt.gz$', replacement = '', source.name)
+      source.name <- paste(mailing.list, source.name, sep = '.')
+      
+      # save corpus
+      .save.corpus(email.corpus, source.name)
     }
 
     setwd('..')

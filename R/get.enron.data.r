@@ -65,12 +65,7 @@ corpora.from.enron.mailboxes <- function(destination.directory) {
     meta(email.corpus, tag = 'source.url', type = 'corpus') <- .enron.tarball.url()
 
     # save corpus
-    save.name <- gsub(pattern = '/', replacement = '.', mailbox.name)
-    save.name <- gsub(pattern = '-', replacement = '.', save.name)
-    save.name <- paste(save.name, 'corpus.rda', sep = '.')
-    save(email.corpus, file = save.name, compress = 'xz')
-    print(paste('Made corpus', save.name, 'from mailbox', mailbox.name))
-
+    .save.corpus(email.corpus, mailbox.name)
   }
 
   print(paste('Returning to', here))

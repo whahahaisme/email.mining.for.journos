@@ -24,3 +24,13 @@
 .enron.date.stamp.format <- function() {
   return('%a, %d %b %Y %X %z')
 }
+
+.save.corpus <- function(email.corpus, source.name) {
+  save.name <- gsub(pattern = '/', replacement = '.', source.name)
+  save.name <- gsub(pattern = '-', replacement = '.', save.name)
+  save.name <- paste(save.name, 'corpus', sep = '.')
+  save.file <- paste(save.name, 'rda', sep = '.')
+  assign(save.name, email.corpus)
+  save(list = c(save.name), file = save.file, compress = 'xz')
+  print(paste('Saved corpus', save.file))
+}
