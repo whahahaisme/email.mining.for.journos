@@ -40,8 +40,12 @@ download.enron.mailboxes <- function(destination.directory) {
 #' @importFrom tm meta
 #' @importFrom tm meta<-
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
+#' @param creator email address of the creator for a corpus-level meta tag
 #' @examples
-#' # corpora.from.enron.mailboxes(destination.directory = '/data/Enron')
+#' # corpora.from.enron.mailboxes(
+#' #   destination.directory = '/data/Enron',
+#' #   creator = 'znmeb at znmeb dot net'
+#' # )
 
 corpora.from.enron.mailboxes <- function(destination.directory, creator) {
   here <- setwd(

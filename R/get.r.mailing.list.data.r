@@ -69,9 +69,11 @@ download.r.mailing.list.archives <- function(destination.directory) {
 #' @importFrom tm meta
 #' @importFrom tm meta<-
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
+#' @param creator email address of the creator for a corpus-level meta tag
 #' @examples
 #' # corpora.from.r.mailing.list.archives(
-#' #   destination.directory = '/data/RMailingLists'
+#' #   destination.directory = '/data/RMailingLists',
+#' #   creator = 'znmeb at znmeb dot net'
 #' # )
 
 corpora.from.r.mailing.list.archives <- function(destination.directory, creator) {
