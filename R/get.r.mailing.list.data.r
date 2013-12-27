@@ -103,7 +103,8 @@ corpora.from.r.mailing.list.archives <- function(destination.directory) {
       month.number <- sprintf('%02d', which(month.name == month))
       save.name <- sub(pattern = '.txt.gz$', replacement = '.corpus.rda', source.file)
       save.name <- sub(pattern = month, replacement = month.number, save.name)
-      save.name <- paste(mailing.list, save.name, sep = '-')
+      save.name <- paste(mailing.list, save.name, sep = '.')
+      save.name <- gsub(pattern = '-', replacement = '.', save.name)
       save(email.corpus, file = save.name, compress = 'xz')
       print(
         paste('Made corpus', save.name, 'from archive', mailing.list, source.file)
