@@ -6,7 +6,6 @@
 #'
 #' @keywords email Enron corpus tarball mailboxes eml
 #' @export download.enron.mailboxes
-#' @importFrom downloader download
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron data stored
 #' @examples
 #' # download.enron.mailboxes(destination.directory = '/data/Enron')
@@ -17,11 +16,13 @@ download.enron.mailboxes <- function(destination.directory) {
 
   tarball <- basename(.enron.tarball.url())
   print(paste('Downloading', .enron.tarball.url()))
-  download.time <- system.time(download(
+  download.time <- system.time(download.file(
     url = .enron.tarball.url(),
     destfile = tarball,
     quiet = TRUE,
-    mode = 'wb'
+    mode = 'wb',
+    method = 'curl',
+    extra = '--location --insecure'
   ))
   print('Download time:')
   print(download.time)
