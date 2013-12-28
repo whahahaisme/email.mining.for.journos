@@ -4,7 +4,7 @@
 #' to a user-specified directory. If the destination directory exists,
 #' it is deleted and re-created.
 #'
-#' @keywords email Enron corpus eml
+#' @keywords email Enron corpus tarball mailboxes eml
 #' @export download.enron.mailboxes
 #' @importFrom downloader download
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron data stored

@@ -4,9 +4,9 @@
 #' mailing list archives to a user-specified directory. If the destination
 #' directory exists, it is deleted and re-created.
 #' 
-#' @keywords email r-devel r-help corpus mbox
+#' @keywords email r-devel r-help corpus mbox mailing.list archive
 #' @export download.r.mailing.list.archives
-#' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
+#' @param destination.directory absolute path to a directory where you want the downloaded R mailing list archives stored
 #' @examples
 #' # download.r.mailing.list.archives(
 #' #   destination.directory = '/data/RMailingLists'

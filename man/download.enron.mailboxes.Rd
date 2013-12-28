@@ -20,4 +20,6 @@ destination directory exists, it is deleted and re-created.
 \keyword{corpus}
 \keyword{email}
 \keyword{eml}
+\keyword{mailboxes}
+\keyword{tarball}
 

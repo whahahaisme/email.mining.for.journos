@@ -6,7 +6,8 @@ download.r.mailing.list.archives(destination.directory)
 }
 \arguments{
   \item{destination.directory}{absolute path to a directory
-  where you want the downloaded Enron corpus stored}
+  where you want the downloaded R mailing list archives
+  stored}
 }
 \description{
 'download.r.mailing.list.archives' downloads the 'r-devel'
@@ -19,8 +20,10 @@ deleted and re-created.
 #   destination.directory = '/data/RMailingLists'
 # )
 }
+\keyword{archive}
 \keyword{corpus}
 \keyword{email}
+\keyword{mailing.list}
 \keyword{mbox}
 \keyword{r-devel}
 \keyword{r-help}
