@@ -27,7 +27,9 @@ download.enron.mailboxes <- function(destination.directory) {
   print('Download time:')
   print(download.time)
   print(paste('Unpacking', tarball))
-  untar(tarball, compressed='gzip')
+  unpack.time <- system.time(untar(tarball, compressed='gzip'))
+  print('Unpack time:')
+  print(unpack.time)
   print(paste('Returning to', here))
   setwd(here)
 }
