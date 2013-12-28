@@ -6,7 +6,6 @@
 #' 
 #' @keywords email r-devel r-help corpus mbox
 #' @export download.r.mailing.list.archives
-#' @importFrom downloader download
 #' @param destination.directory absolute path to a directory where you want the downloaded Enron corpus stored
 #' @examples
 #' # download.r.mailing.list.archives(
@@ -24,12 +23,13 @@ download.r.mailing.list.archives <- function(destination.directory) {
 
     # get the index page
     where <- paste(.r.mailing.list.root(), mailing.list, sep = '/')
-    download(
+    download.file(
       url = where,
       destfile = 'index.html',
       mode = 'wb',
       quiet = TRUE,
-      extra = '--no-check-certificate'
+      method = 'curl',
+      extra = '--location --insecure'
     )
     
     # parse out the file names
@@ -41,12 +41,13 @@ download.r.mailing.list.archives <- function(destination.directory) {
     for (source.file in file.names) {
       print(paste('Downloading', mailing.list, source.file))
       source.url <- paste(where, source.file, sep = '/')
-      download(
+      download.file(
         url = source.url,
         destfile = source.file,
         mode = 'wb',
         quiet = TRUE,
-        extra = '--no-check-certificate'
+        method = 'curl',
+        extra = '--location --insecure'
       )
     }
 
